@@ -1,0 +1,981 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rooms - Yamuna Chhatravas</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="rooms.css">
+    <style>
+        /* ===== GENERAL ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6fbf9;
+    color: #263238;
+}
+
+
+/* Navbar */
+
+ nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background:brown;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+        .logo h2 {
+            color: white;
+        }
+        .logo span{
+            color:#008080;
+        }
+
+        .logo p {
+            color: black;
+            font-size: 13px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color:#008080;
+
+        }
+        /* Dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    width:60%;
+    background:#008080;
+    color: white;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*navbar-end*/
+
+
+/* ===== HERO ===== */
+
+.room-hero {
+    min-height: 420px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(22, 89, 70, 0.75),
+            rgba(22, 89, 70, 0.75)
+        ),
+        url("image/room1.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+.hero-content {
+    max-width: 750px;
+    padding: 30px;
+}
+
+.small-title {
+    letter-spacing: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hero-content h1 {
+    font-size: 52px;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.explore-btn {
+    margin-top: 15px;
+    background: white;
+    color: #287a62;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.explore-btn:hover {
+    background: #d9fff0;
+    color: #14533f;
+}
+
+
+/* ===== SECTION TITLE ===== */
+
+.summary-section,
+.room-list-section {
+    padding: 70px 0;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.section-title span {
+    color: #287a62;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.section-title h2 {
+    font-size: 35px;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.section-title p {
+    color: #68757b;
+    line-height: 1.7;
+}
+
+
+/* ===== FACILITY CARDS ===== */
+
+.facility-card {
+    background: white;
+    padding: 28px 18px;
+    text-align: center;
+
+    border-radius: 15px;
+
+    min-height: 210px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+
+    transition: 0.3s;
+}
+
+.facility-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.facility-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: auto auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e3f6ef;
+
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+.facility-card h4 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.facility-card p {
+    color: #737b80;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ===== ROOM LIST ===== */
+
+.room-list-section {
+    background: #eef8f4;
+}
+
+
+/* ===== SEARCH ===== */
+
+.search-box {
+    max-width: 550px;
+    margin: 0 auto 40px;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 15px 20px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 30px;
+
+    background: white;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+    font-size: 15px;
+}
+
+
+/* ===== ROOM CARD ===== */
+
+.room-card {
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    height: 100%;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+}
+
+.room-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.14);
+}
+
+
+/* Room top */
+.room-image img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display: block;
+}
+.room-image {
+    height: 55px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #287a62,
+            #55aa8d
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    font-size: 55px;
+}
+
+
+/* Status */
+
+.room-status {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    background: #d8f7e8;
+
+    color: #23704f;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* Room content */
+
+.room-content {
+    padding: 22px;
+}
+
+.room-floor {
+    color: #287a62;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+}
+
+.room-content h3 {
+    font-size: 25px;
+
+    margin: 6px 0 10px;
+}
+
+.room-description {
+    color: #6f777b;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    min-height: 65px;
+}
+
+
+/* Features */
+
+.room-features {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin: 15px 0;
+}
+
+.room-features span {
+    background: #f0f8f5;
+
+    color: #356b5a;
+
+    padding: 6px 9px;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+}
+
+
+/* Button */
+
+.details-btn {
+    width: 100%;
+
+    border: none;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    background: #287a62;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.details-btn:hover {
+    background: #195a47;
+}
+
+
+/* ===== DETAILS SECTION ===== */
+
+.details-section {
+    padding: 70px 0;
+
+    background: white;
+}
+
+.details-box {
+    background: #f0faf6;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    border-left: 6px solid #287a62;
+}
+
+.details-box h2 {
+    color: #23694f;
+
+    margin-bottom: 15px;
+}
+
+.details-box p {
+    color: #626c70;
+
+    line-height: 1.8;
+}
+
+.facility-list {
+    list-style: none;
+
+    padding: 0;
+}
+
+.facility-list li {
+    padding: 9px 0;
+
+    color: #40534c;
+}
+
+
+.footer{
+    background:#334155;
+    color:white;
+    padding:60px 10% 20px;
+}
+/*Footer*/
+
+.footer-container{
+    background-color: #334155;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-box{
+    flex:1;
+    min-width:220px;
+    text-align: center;
+}
+
+.footer-box h3{
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#60a5fa;
+}
+
+.footer hr{
+    margin:30px 0 20px;
+    border:0;
+    border-top:1px solid #334155;
+}
+
+.copyright{
+    text-align:center;
+    color:#cbd5e1;
+}
+.image-room {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.image-room img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+    .details-box {
+        padding: 25px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .room-hero {
+        min-height: 350px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .facility-card {
+        min-height: 190px;
+    }
+
+}
+
+    </style>
+
+</head>
+
+<body>
+<nav>
+
+        <div class="logo">
+            <h2><i class="bi bi-building"></i>Yamuna<span>Hostel</span></h2>
+            <p>Hostel Management System</p>
+        </div>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Room">Room</a></li>
+            <li><a href="/fee">Fee </a></li>
+            <li><a href="/gallery">Gallery</li>
+            <li class="dropdown">
+             <a href="/contact">Contact ▼</a>
+             <ul class="dropdown-menu">
+             <li><a href="/faq">FAQ</a></li>
+             <li><a href="/complaint">Complaint</a></li>
+        <li><a href="/attendance">Attendance</a></li> 
+        <li><a href="/notice">Notice Board</a></li>
+        <li><a href="">Notification</a></li>
+        <li><a href="">Logout</a></li>
+            </ul>
+        
+        
+        </ul>
+          
+       </nav>
+
+
+
+<!-- ===== HERO SECTION ===== -->
+<section class="room-hero">
+
+    <div class="hero-content">
+
+        <p class="small-title">YAMUNA CHHATRAVAS</p>
+
+        <h1>Our Hostel Rooms</h1>
+
+        <p>
+            Comfortable, clean and student-friendly rooms
+            designed for a safe and peaceful stay.
+        </p>
+
+        <a href="#room-list" class="btn explore-btn">
+            Explore Rooms ↓
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ===== ROOM SUMMARY ===== -->
+<section class="container summary-section">
+
+    <div class="section-title">
+        <span>ROOM FACILITIES</span>
+        <h2>Everything You Need</h2>
+        <p>
+            Each room at Yamuna Chhatravas is designed to provide
+            students with a comfortable environment for living and studying.
+        </p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <div class="col-md-3 col-6">
+            <div class="facility-card">
+                <div class="facility-icon">👩‍🎓</div>
+                <h4>3 Students</h4>
+                <p>One room can accommodate three students.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="facility-card">
+                <div class="facility-icon">🗄️</div>
+                <h4>3 Almirahs</h4>
+                <p>Separate storage space for students.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="facility-card">
+                <div class="facility-icon">🌀</div>
+                <h4>2 Fans</h4>
+                <p>Two ceiling fans for proper ventilation.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="facility-card">
+                <div class="facility-icon">📚</div>
+                <h4>Study Area</h4>
+                <p>Tables and chairs for comfortable study.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== ROOM LIST ===== -->
+<section class="room-list-section" id="room-list">
+
+    <div class="container">
+
+        <div class="section-title">
+            <span>ROOM DIRECTORY</span>
+            <h2>Available Rooms</h2>
+            <p>
+                Yamuna Chhatravas has 20 rooms from Room 101 to Room 210.
+            </p>
+        </div>
+
+
+        <!-- Search -->
+        <div class="search-box">
+
+            <input type="text"
+                   id="roomSearch"
+                   placeholder="🔍 Search room number e.g. 101">
+
+        </div>
+
+
+        <!-- Room Cards -->
+        <div class="row g-4" id="roomContainer">
+
+            <!-- JavaScript room cards will appear here -->
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== ROOM DETAILS ===== -->
+<section class="details-section">
+
+    <div class="container">
+
+        <div class="details-box">
+
+            <h2>🏠 Room Facilities & Details</h2>
+
+            <p>
+                Yamuna Chhatravas rooms provide a comfortable and
+                student-friendly environment. Each room is shared by
+                three students and provides essential facilities for
+                both living and studying.
+            </p>
+
+            <div class="row mt-4">
+
+                <div class="col-md-6">
+
+                    <ul class="facility-list">
+
+                        <li>✔️ Capacity: 3 Students per Room</li>
+
+                        <li>✔️ 3 Almirahs for Storage</li>
+
+                        <li>✔️ 2 Fans in Each Room</li>
+
+                        <li>✔️ Study Table and Chairs</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <ul class="facility-list">
+
+                        <li>✔️ Windows for Natural Light</li>
+
+                        <li>✔️ Proper Room Ventilation</li>
+
+                        <li>✔️ Separate Room Number</li>
+
+                        <li>✔️ Peaceful Study Environment</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BACK BUTTON -->
+        <div class="text-center mt-4">
+
+            <a href="{% url 'dashboard' %}"
+               class="btn back-btn px-4">
+
+                <i class="bi bi-arrow-left"></i>
+                Back to Dashboard
+
+            </a>
+
+        </div>
+
+<footer class="footer">
+
+        <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>Yamuna Hostel</h3>
+            <p>Yamuna Hostel provides a safe,
+                comfortable and well-managed accommodation for students.Our Hostel management system helps students helps students 
+                and administrators manage rooms, 
+                fees allocations and other hostel services easily.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="index.html">HOME</a>
+            <a href="#courses">ABOUT</a>
+            <a href="#reviews">ROOM ALLOCATION</a>
+            <a href="">FEE</a>
+            <a href="">GALLERY</a>
+            <a href="">CONTACT US</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📧 yamunahostel@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Yamuna Hostel Varanasi</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <p class="copyright">
+         © 2026 Yamuna Hostel. All Rights Reserved.
+    </p>
+
+</footer>
+
+      
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- ===== ROOM JAVASCRIPT ===== -->
+<script>
+
+    const roomContainer = document.getElementById("roomContainer");
+
+    const rooms = [];
+
+    // 101 - 110
+    for (let i = 101; i <= 110; i++) {
+        rooms.push(i);
+    }
+
+    // 201 - 210
+    for (let i = 201; i <= 210; i++) {
+        rooms.push(i);
+    }
+
+
+    function displayRooms(roomList) {
+
+        roomContainer.innerHTML = "";
+
+        roomList.forEach(room => {
+
+            roomContainer.innerHTML += `
+
+                <div class="col-lg-3 col-md-4 col-sm-6 room-item">
+
+                    <div class="room-card">
+
+                        <div class="image-room">
+                          <img src="{% static 'webapp2/image/room3.jpg' %}" alt="Room ${room}">
+                            <span class="room-status">
+                                Available
+                            </span>
+                        </div>
+
+                        <div class="room-content">
+
+                            <p class="room-floor">
+                                YAMUNA CHHATRAVAS
+                            </p>
+
+                            <h3>Room ${room}</h3>
+
+                            <p class="room-description">
+                                Comfortable shared room for
+                                three students with essential
+                                study and storage facilities.
+                            </p>
+
+                            <div class="room-features">
+
+                                <span>👩‍🎓 3 Students</span>
+
+                                <span>🗄️ 3 Almirahs</span>
+
+                                <span>🌀 2 Fans</span>
+
+                                <span>📚 Study Area</span>
+
+                                <span>🪟 Windows</span>
+
+                            </div>
+
+                            <button class="details-btn"
+                                    onclick="openAttendance(${room})">
+                                View Details
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+/*displayRooms(rooms);*/
+    displayRooms(rooms.slice(0, 12));
+
+
+    document.getElementById("roomSearch").addEventListener("input", function() {
+
+    const searchValue = this.value.toLowerCase();
+
+    if (searchValue === "") {
+        // Search empty → only Room 101 to 112
+        displayRooms(rooms.slice(0, 12));
+    } else {
+        // Search → all rooms can appear
+        const filteredRooms = rooms.filter(room =>
+            room.toString().includes(searchValue)
+        );
+
+        displayRooms(filteredRooms);
+    }
+
+});
+
+    // Room details
+    function openAttendance(room) {
+    window.location.href = `/attendance/?room=${room}`;
+}
+</script>
+
+</body>
+</html>

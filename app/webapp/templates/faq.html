@@ -1,0 +1,1052 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+     crossorigin="anonymous"> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+   
+    
+  <style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(white);
+}
+ /* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background:brown;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+        .logo h2 {
+            color: white;
+        }
+        .logo span{
+            color:#008080;
+        }
+
+        .logo p {
+            color: black;
+            font-size: 13px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color:#008080;
+
+        }
+        /* Dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    width:60%;
+    background:#008080;
+    color: white;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*navbar-end*/
+
+ 
+
+
+
+
+/* ================= HERO ================= */
+
+.hero {
+    position: relative;
+    min-height: 380px;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    background: #dff3e8;
+    overflow: hidden;
+}
+
+.hero .container {
+    min-height: 340px;
+    position: relative;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    padding-top: 75px;
+    width: 50%;
+}
+
+.hero-text span {
+    color: #25815e;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.hero-text h1 {
+    font-size: 45px;
+    color: #104f3a;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.hero-text p {
+    color: #567267;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.hero-image {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    width: 55%;
+    height: 300px;
+    
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow:0px 0px 5px gray;
+}
+
+
+/* ================= FAQ SECTION ================= */
+
+.faq-section {
+    padding: 45px 0;
+}
+
+.faq-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(40,80,60,0.08);
+    border: 1px solid #e1eee7;
+}
+
+
+/* ================= FAQ HEADING ================= */
+
+.faq-heading {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding: 5px 5px 20px;
+}
+
+.question-icon {
+    min-width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #197657;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.faq-heading h2 {
+    color: #176b4d;
+    font-size: 25px;
+    margin-bottom: 4px;
+}
+
+.faq-heading p {
+    color: #72857c;
+    margin: 0;
+}
+
+
+/* ================= FAQ ITEM ================= */
+
+.faq-item {
+    border: 1px solid #d9ebe2;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    border: none;
+    background: #f8fcfa;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    color: #164f3b;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.faq-question:hover {
+    background: #edf8f1;
+}
+
+.faq-question b {
+    color: #197657;
+    font-size: 20px;
+}
+
+.faq-answer {
+    display: none;
+    padding: 17px 20px;
+    background: #f0f8f4;
+    color: #60766c;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.faq-answer.show {
+    display: block;
+}
+
+
+/* ================= SIDE CARD ================= */
+
+.side-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(40,80,60,0.08);
+    border: 1px solid #e1eee7;
+}
+
+.side-card h3 {
+    color: #176b4d;
+    margin-bottom: 15px;
+}
+
+.side-card a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #365d4d;
+    background: #f5faf7;
+    padding: 13px;
+    margin-bottom: 7px;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.side-card a:hover {
+    background: #e4f4eb;
+    color: #176b4d;
+}
+
+
+/* ================= HELP CARD ================= */
+
+.help-card {
+    margin-top: 20px;
+    padding: 25px;
+    background: #e4f5eb;
+    border-radius: 16px;
+    border: 1px solid #cce6d7;
+}
+
+.help-icon {
+    font-size: 40px;
+}
+
+.help-card h3 {
+    color: #176b4d;
+    margin: 10px 0;
+}
+
+.help-card p {
+    color: #60766c;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.help-card a {
+    display: inline-block;
+    text-decoration: none;
+    background: #197657;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.help-card a:hover {
+    background: #104f3a;
+}
+
+
+/* ================= QUOTE ================= */
+
+.quote-card {
+    margin-top: 20px;
+    min-height: 150px;
+    padding: 30px;
+    border-radius: 16px;
+    background: #fffdf4;
+    text-align: center;
+}
+
+.quote-card h3 {
+    color: #29604b;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.quote-card span {
+    font-size: 25px;
+    color: #25815e;
+}
+
+
+/* ================= FEATURES ================= */
+
+.features {
+    background: #e4f4eb;
+    padding: 25px 0;
+}
+
+.features .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #285b48;
+    font-weight: bold;
+}
+
+.feature div {
+    font-size: 35px;
+}
+.footer{
+    background:#334155;
+    color:white;
+    padding:60px 10% 20px;
+}
+/*Footer*/
+
+.footer-container{
+    background-color: #334155;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-box{
+    flex:1;
+    min-width:220px;
+    text-align: center;
+}
+
+.footer-box h3{
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#60a5fa;
+}
+
+
+
+
+
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero .container {
+        min-height: auto;
+    }
+
+    .hero-text {
+        width: 100%;
+        padding: 40px 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 34px;
+    }
+
+    .hero-image {
+        position: relative;
+        width: 100%;
+        height: 220px;
+    }
+
+    .features .container {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .faq-heading {
+        align-items: flex-start;
+    }
+
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    .nav-link {
+        margin-left: 0;
+        margin-top: 4px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+
+        <div class="logo">
+            <h2><i class="bi bi-building"></i>Yamuna<span>Hostel</span></h2>
+            <p>Hostel Management System</p>
+        </div>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Room">Room</a></li>
+            <li><a href="/fee">Fee </a></li>
+            <li><a href="/gallery">Gallery</li>
+            <li class="dropdown">
+             <a href="/contact">Contact ▼</a>
+             <ul class="dropdown-menu">
+             <li><a href="/faq">FAQ</a></li>
+             <li><a href="/complaint">Complaint</a></li>
+        <li><a href="/attendance">Attendance</a></li> 
+        <li><a href="/notice">Notice Board</a></li>
+        <li><a href="">Notification</a></li>
+        <li><a href="">Logout</a></li>
+            </ul>
+        
+        
+        </ul>
+          
+       </nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="container mt-">
+
+        <div class="hero-text">
+
+            <span>Welcome to Yamuna Hostel ♡</span>
+
+            <h1>
+                Frequently Asked<br>
+                Questions
+            </h1>
+
+            <p>
+                Find quick answers to common questions about
+                rooms, admission, fees, facilities and hostel rules.
+            </p>
+
+        </div>
+
+        <div class="hero-image">
+            <img src="{% static 'webapp2/image/room2.jfif'%}" alt="Yamuna Hostel">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN FAQ ================= -->
+
+<section class="faq-section">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+
+            <!-- LEFT FAQ -->
+
+            <div class="col-lg-8">
+
+                <div class="faq-card">
+
+                    <div class="faq-heading">
+
+                        <div class="question-icon">
+                            ?
+                        </div>
+
+                        <div>
+                            <h2>General Questions</h2>
+
+                            <p>
+                                Here you will find answers to the most
+                                common questions asked by hostel students.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 1 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                🏠 How can I apply for Yamuna Hostel admission?
+                            </span>
+
+                            <b>⌃</b>
+
+                        </button>
+
+                        <div class="faq-answer show">
+
+                            Students can apply for hostel accommodation
+                            through the hostel admission or registration
+                            process. Required documents and eligibility
+                            details should be submitted to the hostel office.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 2 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                🛏️ How are rooms allotted to students?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Rooms are allotted by the hostel administration
+                            according to room availability, student
+                            requirements and hostel rules.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 3 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                ₹ What information is available about hostel fees?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Hostel fees include applicable accommodation
+                            and hostel service charges. Students can
+                            contact the hostel office for the current
+                            fee structure and payment schedule.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 4 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                🍽️ Is mess facility available in the hostel?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Yes, mess facilities are available for hostel
+                            students. Meal timings and menu are managed
+                            according to hostel guidelines.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 5 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                🕒 What are the hostel entry and exit timings?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Students are expected to follow the entry and
+                            exit timings decided by the hostel administration.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 6 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                👥 Are visitors allowed in the hostel?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Visitors may be allowed during designated
+                            visiting hours. All visitors must follow
+                            hostel security and visitor rules.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 7 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                🔧 How can I report a hostel complaint?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Students can report room, maintenance, mess
+                            or other hostel-related complaints to the
+                            hostel office or warden.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 8 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                📋 Is attendance maintained in the hostel?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Yes, hostel attendance can be maintained by
+                            the administration to keep track of student
+                            presence and hostel records.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 9 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                🛡️ What security facilities are available?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Hostel security may include controlled entry,
+                            visitor records, supervision and other
+                            safety measures according to hostel policies.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 10 -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question"
+                                onclick="toggleFAQ(this)">
+
+                            <span>
+                                📞 Whom should I contact for urgent issues?
+                            </span>
+
+                            <b>⌄</b>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            For urgent hostel-related issues, students
+                            should contact the hostel warden or hostel
+                            administration immediately.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RIGHT SIDEBAR ================= -->
+
+            <div class="col-lg-4">
+
+                <!-- QUICK LINKS -->
+
+                <div class="side-card">
+
+                    <h3>🔗 Quick Links</h3>
+
+                    <a href="#">
+                        📄 Admission Process
+                        <span>›</span>
+                    </a>
+
+                    <a href="rooms.html">
+                        🛏️ Room Details
+                        <span>›</span>
+                    </a>
+
+                    <a href="#">
+                        ₹ Fee Structure
+                        <span>›</span>
+                    </a>
+
+                    <a href="#">
+                        🍽️ Mess Menu
+                        <span>›</span>
+                    </a>
+
+                    <a href="#">
+                        📖 Hostel Rules
+                        <span>›</span>
+                    </a>
+
+                    <a href="contact.html">
+                        👤 Contact Warden
+                        <span>›</span>
+                    </a>
+
+                </div>
+
+
+                <!-- HELP CARD -->
+
+                <div class="help-card">
+
+                    <div class="help-icon">
+                        🎧
+                    </div>
+
+                    <h3>Need More Help?</h3>
+
+                    <p>
+                        Still have questions? Our hostel administration
+                        team is here to assist you with any query.
+                    </p>
+
+                    <a href="contact.html">
+                        ✉ Contact Us →
+                    </a>
+
+                </div>
+
+
+                <!-- QUOTE -->
+
+                <div class="quote-card">
+
+                    <h3>
+                        A safe hostel<br>
+                        builds a brighter future
+                    </h3>
+
+                    <span>♡</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOTTOM FEATURES ================= -->
+
+<section class="features">
+
+    <div class="container">
+
+        <div class="feature">
+
+            <div>🎓</div>
+
+            <span>
+                Support for<br>
+                Every Student
+            </span>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div>🏠</div>
+
+            <span>
+                Safe & Comfortable<br>
+                Living
+            </span>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div>👥</div>
+
+            <span>
+                Together for a<br>
+                Better Tomorrow
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BACK BUTTON -->
+        <div class="text-center mt-4">
+
+            <a href="{% url 'dashboard' %}"
+               class="btn back-btn px-4">
+
+                <i class="bi bi-arrow-left"></i>
+                Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+        <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>Yamuna Hostel</h3>
+            <p>Yamuna Hostel provides a safe,
+                comfortable and well-managed accommodation for students.Our Hostel management system helps students helps students 
+                and administrators manage rooms, 
+                fees allocations and other hostel services easily.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="index.html">HOME</a>
+            <a href="#courses">ABOUT</a>
+            <a href="#reviews">ROOM ALLOCATION</a>
+            <a href="">FEE</a>
+            <a href="">GALLERY</a>
+            <a href="">CONTACT US</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📧 yamunahostel@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Yamuna Hostel Varanasi</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <p class="copyright">
+         © 2026 Yamuna Hostel. All Rights Reserved.
+    </p>
+
+</footer>
+
+      
+
+
+</body>
+</html>

@@ -1,0 +1,553 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fees Management</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+        }
+        
+ /* Navbar */
+
+ nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background:brown;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+        .logo h2 {
+            color: white;
+        }
+        .logo span{
+            color:#008080;
+        }
+
+        .logo p {
+            color: black;
+            font-size: 13px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color:#008080;
+        }
+
+        
+
+        .fee-header {
+            background: linear-gradient(135deg, #008080, #b38c59);
+            color: white;
+            padding: 35px;
+            padding-top: 40px;
+            margin-top: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .fee-header h1 {
+            font-weight: 700;
+        }
+
+        .fee-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .fee-section h4 {
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .challan-img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fafafa;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 5px solid #008080;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .status-paid {
+            color:#334155;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .fee-btn {
+            border-radius: 8px;
+            padding: 10px 18px;
+            margin: 4px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+        footer{
+    background:#334155;
+    color:white;
+    padding:60px 10% 20px;
+}
+/*Footer*/
+
+.footer-container{
+    background-color: #334155;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-box{
+    flex:1;
+    min-width:220px;
+    text-align: center;
+}
+
+.footer-box h3{
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#008080;
+}
+
+.footer hr{
+    margin:30px 0 20px;
+    border:0;
+    border-top:1px solid #334155;
+}
+
+.copyright{
+    text-align:center;
+    color:#cbd5e1;
+}
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+        <div class="logo">
+            <h2><i class="bi bi-building"></i>Yamuna<span>Hostel</span></h2>
+            <p>Hostel Management System</p>
+        </div>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Room">Room</a></li>
+            <li><a href="/fee">Fee </a></li>
+            <li><a href="/gallery">Gallery</li>
+            <li class="dropdown">
+             <a href="/contact">Contact ▼</a>
+             <ul class="dropdown-menu">
+             <li><a href="/faq">FAQ</a></li>
+             <li><a href="/complaint">Complaint</a></li>
+        <li><a href="/attendance">Attendance</a></li> 
+        <li><a href="/notice">Notice Board</a></li>
+        <li><a href="">Notification</a></li>
+        <li><a href="">Logout</a></li>
+            </ul>
+        
+        
+        </ul>
+         
+       </nav>
+
+<div class="container py-4 mt-5">
+
+    <!-- PAGE HEADER -->
+    <div class="fee-header">
+        <div class="row align-items-center">
+
+            <div class="col-md-7">
+                <h1>
+                    <i class="bi bi-wallet2"></i>
+                    Fees & Hostel
+                </h1>
+
+                <p class="mb-0">
+                    Manage your hostel fees, generate challan,
+                    upload payment proof and check payment status.
+                </p>
+            </div>
+
+            <div class="col-md-5 text-center mt-3 mt-md-0">
+
+                <!-- Challan Image -->
+                <img src="{% static 'webapp2/image/saloni.jpg' %}"
+                     class="challan-img"
+                     alt="Fee Challan">
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- HOSTEL FEE INFORMATION -->
+    <div class="fee-section">
+
+        <h4 class="mb-4">
+            <i class="bi bi-building"></i>
+            Hostel Fee Information
+        </h4>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <div class="info-box">
+                    <small>Hostel Fee</small>
+                    <h4>₹ 2100</h4>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="info-box">
+                    <small>Mess Fee</small>
+                    <h4>₹ 2500</h4>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="info-box">
+                    <small>Total Fee</small>
+                    <h4>₹ 4600</h4>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="text-muted mt-2">
+            Please pay the hostel fee before the last date
+            and keep the challan safely for future reference.
+        </p>
+
+    </div>
+
+
+    <!-- GENERATE / UPLOAD CHALLAN -->
+    <div class="fee-section">
+
+        <h4 class="mb-4">
+            <i class="bi bi-receipt"></i>
+            Generate / Upload Challan
+        </h4>
+
+        <div class="row">
+
+            <!-- Generate -->
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Generate Fee Challan
+                </label>
+
+                <p class="text-muted">
+                    Generate your hostel fee challan
+                    for the current semester.
+                </p>
+
+                <button class="btn btn-primary fee-btn"
+                        onclick="generateChallan()">
+
+                    <i class="bi bi-file-earmark-plus"></i>
+                    Generate Challan
+
+                </button>
+
+            </div>
+
+
+            <!-- Upload -->
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Upload Paid Challan
+                </label>
+
+                <input type="file"
+                       class="form-control"
+                       id="challanFile"
+                       accept=".jpg,.jpeg,.png,.pdf">
+
+                <button class="btn btn-success fee-btn mt-3"
+                        onclick="uploadChallan()">
+
+                    <i class="bi bi-cloud-upload"></i>
+                    Upload Challan
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT STATUS -->
+    <div class="fee-section">
+
+        <h4 class="mb-4">
+            <i class="bi bi-credit-card"></i>
+            Payment Status
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered align-middle">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Fee Type</th>
+                        <th>Amount</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Hostel Fee</td>
+                        <td>₹ 4600</td>
+                        <td>30 September 2026</td>
+
+                        <td>
+                            <span class="status-pending">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-outline-primary btn-sm fee-btn"
+                                    onclick="viewChallan()">
+                                <i class="bi bi-eye"></i>
+                                View
+                            </button>
+
+                            <button class="btn btn-outline-success btn-sm fee-btn"
+                                    onclick="downloadChallan()">
+                                <i class="bi bi-download"></i>
+                                Download
+                            </button>
+
+                            <button class="btn btn-outline-dark btn-sm fee-btn"
+                                    onclick="printChallan()">
+                                <i class="bi bi-printer"></i>
+                                Print
+                            </button>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Status Button -->
+
+        <div class="text-center mt-3">
+
+            <button class="btn btn-warning fee-btn"
+                    onclick="checkPaymentStatus()">
+
+                <i class="bi bi-arrow-clockwise"></i>
+                Check Payment Status
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- BACK BUTTON -->
+        <div class="text-center mt-4">
+
+            <a href="{% url 'dashboard' %}"
+               class="btn back-btn px-4">
+
+                <i class="bi bi-arrow-left"></i>
+                Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+    function generateChallan() {
+        alert("Fee Challan generated successfully!");
+    }
+
+
+    function uploadChallan() {
+
+        let file = document.getElementById("challanFile").files[0];
+
+        if (!file) {
+            alert("Please select a challan file first.");
+            return;
+        }
+
+        alert("Challan uploaded successfully!");
+    }
+
+
+    function viewChallan() {
+        window.open("/static/images/challan.jpg", "_blank");
+    }
+
+
+    function downloadChallan() {
+
+        let link = document.createElement("a");
+
+        link.href = "/static/images/challan.jpg";
+        link.download = "Hostel_Fee_Challan.jpg";
+
+        link.click();
+    }
+
+
+    function printChallan() {
+
+        let printWindow = window.open(
+            "/static/images/challan.jpg",
+            "_blank"
+        );
+
+        printWindow.onload = function () {
+            printWindow.print();
+        };
+    }
+
+
+    function checkPaymentStatus() {
+
+        alert("Payment status: Pending");
+
+    }
+
+</script>
+<footer class="footer">
+
+        <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>Yamuna Hostel</h3>
+            <p>Yamuna Hostel provides a safe,
+                comfortable and well-managed accommodation for students.Our Hostel management system helps students helps students 
+                and administrators manage rooms, 
+                fees allocations and other hostel services easily.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="index.html">HOME</a>
+            <a href="#courses">ABOUT</a>
+            <a href="#reviews">ROOM ALLOCATION</a>
+            <a href="">FEE</a>
+            <a href="">GALLERY</a>
+            <a href="">CONTACT US</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📧 yamunahostel@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Yamuna Hostel Varanasi</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <p class="copyright">
+         © 2026 Yamuna Hostel. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>

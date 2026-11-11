@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+     crossorigin="anonymous"> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+   
+    
+  <style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(white,rgb(119, 142, 151));
+}
+ /* Navbar */
+
+ nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background:brown;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+        .logo h2 {
+            color: white;
+        }
+        .logo span{
+            color:#008080;
+        }
+
+        .logo p {
+            color: black;
+            font-size: 13px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color:#008080;
+
+        }
+        /* Dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    width:60%;
+    background:#008080;
+    color: white;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*navbar-end*/
+
+ body {
+            background: #f7f5ff;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        
+       
+
+        /* Hero */
+        .hero {
+            margin-top: 35px;
+            text-align: center;
+            padding: 35px 15px;
+            padding-top: 60px;
+        }
+
+        .hero h1 {
+            color: #008080;
+            font-weight: 700;
+            font-size: 38px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Main Cards */
+        .main-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 5px 20px rgba(65, 40, 130, 0.10);
+            border: none;
+        }
+
+        .card-title {
+            color: #008080;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Form */
+        .form-label {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            padding: 11px;
+            border: 1px solid #ddd;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #008080;
+            box-shadow: 0 0 0 0.15rem rgba(111,66,193,.15);
+        }
+
+        .submit-btn {
+            background: #008080;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #008080;
+            color: white;
+        }
+
+        /* Complaint Category */
+        .category-box {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px 8px;
+            text-align: center;
+            background: #faf9ff;
+            cursor: pointer;
+            transition: 0.3s;
+            height: 105px;
+        }
+
+        .category-box i {
+            font-size: 27px;
+            color: #008080;
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .category-box span {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .category-box:hover {
+            background: #eee8ff;
+            transform: translateY(-3px);
+            border-color: #c8b8f5;
+        }
+
+        /* Complaint Status */
+        .complaint-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .complaint-item:last-child {
+            border-bottom: none;
+        }
+
+        .complaint-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .complaint-info {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #fff0c7;
+            color: #a06a00;
+        }
+
+        .progress-status {
+            background: #dcecff;
+            color: #1769aa;
+        }
+
+        .resolved {
+            background: #d9f7e6;
+            color: #16834d;
+        }
+
+        /* Urgent Box */
+        .urgent-box {
+            background: #fff4f4;
+            border-left: 5px solid #dc3545;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .urgent-box h6 {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        
+
+        /* Responsive */
+        @media(max-width: 768px) {
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .main-card {
+                margin-bottom: 20px;
+            }
+
+            .nav-link {
+                margin-left: 0;
+            }
+        }
+
+
+
+.footer{
+    background:#334155;
+    color:white;
+    padding:60px 10% 20px;
+    
+}
+/*Footer*/
+
+.footer-container{
+    background-color: #334155;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-box{
+    flex:1;
+    min-width:220px;
+    text-align: center;
+}
+
+.footer-box h3{
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#60a5fa;
+}
+
+.footer hr{
+    margin:30px 0 20px;
+    border:0;
+    border-top:1px solid #334155;
+}
+
+.copyright{
+    text-align:center;
+    color:#cbd5e1;
+}
+
+</style>
+</head>
+  <body>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<div class="container-fluid">
+    <div class="row">
+<div class="col-sm-12 p-0">
+               
+       <nav>
+
+        <div class="logo">
+            <h2><i class="bi bi-building"></i>Yamuna<span>Hostel</span></h2>
+            <p>Hostel Management System</p>
+        </div>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Room">Room</a></li>
+            <li><a href="/fee">Fee </a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li class="dropdown">
+             <a href="/contact">Contact ▼</a>
+             <ul class="dropdown-menu">
+             <li><a href="/faq">FAQ</a></li>
+             <li><a href="/complaint">Complaint</a></li>
+        <li><a href="/attendance">Attendance</a></li> 
+        <li><a href="/notice">Notice Board</a></li>
+        <li><a href="">Notification</a></li>
+        <li><a href="">Logout</a></li>
+            
+        
+        
+        </ul>
+         
+    </li>
+       </nav>
+</div>
+
+
+
+            
+                
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>
+        <i class="bi bi-chat-left-text"></i>
+        Student Complaint Portal
+    </h1>
+
+    <p>
+        Report your hostel problems and get them resolved quickly.
+    </p>
+
+</section>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="container">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDE -->
+
+        <div class="col-lg-7">
+
+            <div class="main-card">
+
+                <h4 class="card-title">
+                    <i class="bi bi-pencil-square"></i>
+                    Submit a Complaint
+                </h4>
+
+              
+                <form id="complaintForm" method="POST" action="{% url 'complaint' %}">
+                      {% csrf_token %}
+                    <div class="row">
+
+                        <!-- Student Name -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+                                Student Name
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="studentName"
+                                   name="name"
+                                   placeholder="Enter your name"
+                                   required>
+
+                        </div>
+
+
+                        <!-- Room Number -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+                                Room Number
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="roomNumber"
+                                   name="room"
+                                   placeholder="e.g. 104"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Category -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Complaint Category
+                        </label>
+
+                        <select class="form-select"
+                                id="category"
+                                name="category"
+                                required>
+
+                            <option value="">Select Complaint Category</option>
+
+                            <option>Electricity Problem</option>
+                            <option>Washroom Cleaning</option>
+                            <option>Mess Complaint</option>
+                            <option>Room Repair</option>
+                            <option>Water Tap Leakage</option>
+                            <option>Fan / Light Problem</option>
+                            <option>Internet / Wi-Fi Problem</option>
+                            <option>Furniture Issue</option>
+                            <option>Cleanliness Problem</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Subject -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Complaint Subject
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="subject"
+                               name="subject"
+                               placeholder="Enter complaint subject"
+                               required>
+
+                    </div>
+
+
+                    <!-- Description -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Description
+                        </label>
+
+                        <textarea class="form-control"
+                                  id="description"
+                                  name="description"
+                                  rows="4"
+                                  placeholder="Describe your problem..."
+                                  required></textarea>
+
+                    </div>
+
+
+                    <!-- Priority -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Priority
+                        </label>
+
+                        <select class="form-select"
+                                id="priority"
+                                name="priority">
+
+                            <option>Low</option>
+                            <option selected>Medium</option>
+                            <option>High</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="submit-btn">
+
+                        <i class="bi bi-send"></i>
+                        Submit Complaint
+
+                    </button>
+</form>
+               
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="col-lg-5">
+
+            <div class="main-card">
+
+                <h4 class="card-title">
+                    <i class="bi bi-grid"></i>
+                    Common Complaints
+                </h4>
+
+
+                <div class="row g-2">
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-lightning-charge"></i>
+
+                            <span>Electricity</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-droplet"></i>
+
+                            <span>Water Leakage</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-water"></i>
+
+                            <span>Washroom</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-cup-hot"></i>
+
+                            <span>Mess</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-tools"></i>
+
+                            <span>Room Repair</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-wifi"></i>
+
+                            <span>Wi-Fi</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-fan"></i>
+
+                            <span>Fan / Light</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-house-check"></i>
+
+                            <span>Cleanliness</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="category-box">
+
+                            <i class="bi bi-three-dots"></i>
+
+                            <span>Other</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Urgent Complaint -->
+
+            <div class="urgent-box">
+
+                <h6>
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Urgent Issue?
+                </h6>
+
+                <p class="mb-0">
+                    For emergency problems, please contact the
+                    hostel warden immediately.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= RECENT COMPLAINTS ================= -->
+
+
+<div class="main-card mt-4">
+
+    <h4 class="card-title">
+        <i class="bi bi-clock-history"></i>
+        Recent Complaints
+    </h4>
+
+    {% for complaint in complaints %}
+
+    <div class="complaint-item">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <div class="complaint-title">
+                    <i class="bi bi-chat-left-text"></i>
+                    {{ complaint.subject }}
+                </div>
+
+                <div class="complaint-info">
+                    Student: {{ complaint.name }}
+                    • Room {{ complaint.room }}
+                </div>
+
+                <div class="complaint-info">
+                    Category: {{ complaint.category }}
+                    • Priority: {{ complaint.priority }}
+                </div>
+
+                <div class="complaint-info">
+                    {{ complaint.description }}
+                </div>
+
+            </div>
+
+            <span class="status pending">
+                Pending
+            </span>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="text-center p-4">
+        <p>No complaints submitted yet.</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+       
+
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+   
+
+
+    /* Category box click */
+
+    document.querySelectorAll(".category-box").forEach(function(box) {
+
+        box.addEventListener("click", function() {
+
+            let categoryName =
+                this.querySelector("span").innerText;
+
+            document.getElementById("category").value =
+                categoryName === "Water Leakage"
+                ? "Water Tap Leakage"
+                : categoryName === "Washroom"
+                ? "Washroom Cleaning"
+                : categoryName === "Electricity"
+                ? "Electricity Problem"
+                : categoryName === "Mess"
+                ? "Mess Complaint"
+                : categoryName === "Room Repair"
+                ? "Room Repair"
+                : categoryName === "Wi-Fi"
+                ? "Internet / Wi-Fi Problem"
+                : categoryName === "Fan / Light"
+                ? "Fan / Light Problem"
+                : categoryName === "Cleanliness"
+                ? "Cleanliness Problem"
+                : "Other";
+
+        });
+
+    });
+
+</script>
+
+
+
+ <footer class="footer">
+
+        <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>Yamuna Hostel</h3>
+            <p>Yamuna Hostel provides a safe,
+                comfortable and well-managed accommodation for students.Our Hostel management system helps students helps students 
+                and administrators manage rooms, 
+                fees allocations and other hostel services easily.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="index.html">HOME</a>
+            <a href="#courses">ABOUT</a>
+            <a href="#reviews">ROOM ALLOCATION</a>
+            <a href="">FEE</a>
+            <a href="">GALLERY</a>
+            <a href="">CONTACT US</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📧 yamunahostel@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Yamuna Hostel Varanasi</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <p class="copyright">
+         © 2026 Yamuna Hostel. All Rights Reserved.
+    </p>
+
+</footer>
+</body>
+</html>

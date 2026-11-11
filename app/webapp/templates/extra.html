@@ -1,0 +1,2615 @@
+
+    // Login Validation
+
+    document.getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const username =
+            document.getElementById("username").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        if (username === "" || password === "") {
+
+            alert("Please enter username and password.");
+
+            return;
+        }
+
+        if (password.length < 6) {
+
+            alert("Password must contain at least 6 characters.");
+
+            return;
+        }
+
+        alert("Login successful!");
+
+        // Home page par redirect
+        window.location.href = "/dashboard";
+
+    });
+
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+#complaint JAVASCRIPT
+document.getElementById("complaintForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+         <!-- ================= RECENT COMPLAINTS ================= -->
+
+    <div class="main-card mt-4">
+
+        <h4 class="card-title">
+            <i class="bi bi-clock-history"></i>
+            Recent Complaints
+        </h4>
+
+
+        <!-- Complaint 1 -->
+
+        <div class="complaint-item">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <div class="complaint-title">
+                        <i class="bi bi-lightning-charge"></i>
+                        Electricity Problem
+                    </div>
+
+                    <div class="complaint-info">
+                        Room 104 • 12 Sep 2026
+                    </div>
+
+                </div>
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Complaint 2 -->
+
+        <div class="complaint-item">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <div class="complaint-title">
+                        <i class="bi bi-droplet"></i>
+                        Tap Water Leakage
+                    </div>
+
+                    <div class="complaint-info">
+                        Room 108 • 11 Sep 2026
+                    </div>
+
+                </div>
+
+                <span class="status progress-status">
+                    In Progress
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Complaint 3 -->
+
+        <div class="complaint-item">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <div class="complaint-title">
+                        <i class="bi bi-water"></i>
+                        Washroom Cleaning
+                    </div>
+
+                    <div class="complaint-info">
+                        Room 115 • 10 Sep 2026
+                    </div>
+
+                </div>
+
+                <span class="status resolved">
+                    Resolved
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Complaint 4 -->
+
+        <div class="complaint-item">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <div class="complaint-title">
+                        <i class="bi bi-cup-hot"></i>
+                        Mess Food Complaint
+                    </div>
+
+                    <div class="complaint-info">
+                        Room 102 • 09 Sep 2026
+                    </div>
+
+                </div>
+
+                <span class="status resolved">
+                    Resolved
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    document.getElementById("complaintForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let name = document.getElementById("studentName").value;
+        let category = document.getElementById("category").value;
+
+        alert(
+            "Complaint Submitted Successfully!\n\n" +
+            "Student: " + name + "\n" +
+            "Category: " + category
+        );
+
+        document.getElementById("complaintForm").reset();
+
+    });
+
+
+    /* Category box click */
+
+    document.querySelectorAll(".category-box").forEach(function(box) {
+
+        box.addEventListener("click", function() {
+
+            let categoryName =
+                this.querySelector("span").innerText;
+
+            document.getElementById("category").value =
+                categoryName === "Water Leakage"
+                ? "Water Tap Leakage"
+                : categoryName === "Washroom"
+                ? "Washroom Cleaning"
+                : categoryName === "Electricity"
+                ? "Electricity Problem"
+                : categoryName === "Mess"
+                ? "Mess Complaint"
+                : categoryName === "Room Repair"
+                ? "Room Repair"
+                : categoryName === "Wi-Fi"
+                ? "Internet / Wi-Fi Problem"
+                : categoryName === "Fan / Light"
+                ? "Fan / Light Problem"
+                : categoryName === "Cleanliness"
+                ? "Cleanliness Problem"
+                : "Other";
+
+        });
+
+    });
+
+</script>
+
+
+#complaint view.py
+def complaint(request):
+   
+    if request.method == "POST":
+
+        name = request.POST.get("name")
+        category = request.POST.get("category")
+        subject = request.POST.get("subject")
+        description = request.POST.get("description")
+        room = request.POST.get("room")
+        priority = request.POST.get("priority")
+
+        Complaint.objects.create(
+            name=name,
+            category=category,
+            subject=subject,
+            description=description,
+            room=room,
+            priority=priority,
+        )
+
+        return redirect("complaint")
+
+    complaints = Complaint.objects.all().order_by("-id")
+
+    return render(request, "complaint.html", {
+        "complaints": complaints
+    })
+    
+    
+    
+    
+    #complaintdata
+    
+
+def complaintdata(request):
+
+    complaints=Complaint.objects.all()
+
+    return render(request, "complaintdata.html", {
+        "complaints": complaints
+    })
+
+ migrations.AddField(
+            migrations.AddField(
+            model_name='complaint',
+            name='created_at',
+            field=models.DateTimeField(auto_now_add=True, default=2),
+            preserve_default=False,
+        ),
+
+
+
+
+
+        @login_required(login_url='login')
+def dashboard(request):
+
+    total_students = Student.objects.count()
+    total_contacts = Contact.objects.count()
+    total_complaints = Complaint.objects.count()
+
+    total_rooms = 20
+
+    recent_students = Student.objects.order_by("-id")[:5]
+    recent_contacts = Contact.objects.order_by("-id")[:5]
+    recent_complaints = Complaint.objects.order_by("-id")[:5]
+
+    context = {
+        "total_students": total_students,
+        "total_rooms": total_rooms,
+        "total_contacts": total_contacts,
+        "total_complaints": total_complaints,
+
+        "recent_students": recent_students,
+        "recent_contacts": recent_contacts,
+        "recent_complaints": recent_complaints,
+    }
+
+    return render(request, "hostel/dashboard.html", context)
+
+
+
+
+
+
+
+
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Yamuna Hostel</title>
+
+    <!-- Bootstrap 5.3.3 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f9f8;
+            color: #173b3a;
+        }
+
+
+        /* =========================
+           TOP NAVBAR
+        ========================= */
+
+        .top-navbar {
+            height: 82px;
+            background: #e5f6ef;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #d3ebe3;
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            font-size: 48px;
+            color: #087f5b;
+        }
+
+        .brand h3 {
+            margin: 0;
+            font-weight: bold;
+            color: #064f48;
+        }
+
+        .brand small {
+            color: #386b65;
+        }
+
+
+        /* Search */
+
+        .search-box {
+            width: 325px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border: 1px solid #cbded8;
+            border-radius: 9px;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 13px;
+            font-size: 20px;
+            color: #386b65;
+        }
+
+
+        .admin-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #123f3d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .logout-btn {
+            background: #ef5350;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #d93636;
+            color: white;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 82px;
+            bottom: 0;
+            width: 273px;
+            background: #063f40;
+            padding: 20px 12px;
+            overflow-y: auto;
+        }
+
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            color: white;
+            text-decoration: none;
+            padding: 13px 16px;
+            margin-bottom: 6px;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #177c72;
+        }
+
+
+        .sidebar a i {
+            font-size: 22px;
+            width: 28px;
+        }
+
+
+        .sidebar-bottom {
+            text-align: center;
+            color: white;
+            margin-top: 55px;
+            opacity: 0.9;
+        }
+
+        .sidebar-bottom i {
+            font-size: 55px;
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            margin-left: 273px;
+            padding: 110px 25px 30px;
+        }
+
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-weight: bold;
+            color: #073e40;
+        }
+
+        .page-title p {
+            color: #386b65;
+        }
+
+
+        /* =========================
+           DASHBOARD CARDS
+        ========================= */
+
+        .dashboard-card {
+            border-radius: 10px;
+            padding: 23px;
+            min-height: 150px;
+            border: 1px solid #d8e8e3;
+            transition: 0.3s;
+        }
+
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+
+        .card-blue {
+            background: #e8f3ff;
+        }
+
+        .card-green {
+            background: #e7f8ef;
+        }
+
+        .card-purple {
+            background: #f3ebff;
+        }
+
+        .card-red {
+            background: #fff0f1;
+        }
+
+
+        .card-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+
+        .card-blue .card-icon {
+            background: #d2e8ff;
+            color: #07599c;
+        }
+
+        .card-green .card-icon {
+            background: #c9f0d9;
+            color: #087f5b;
+        }
+
+        .card-purple .card-icon {
+            background: #e4d0ff;
+            color: #6424a8;
+        }
+
+        .card-red .card-icon {
+            background: #ffd3d8;
+            color: #b31338;
+        }
+
+
+        .dashboard-card h6 {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+
+        .card-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+
+        .view-link {
+            text-decoration: none;
+            float: right;
+            color: #087f5b;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           TABLE SECTION
+        ========================= */
+
+        .section-box {
+            background: white;
+            border: 1px solid #d8e8e3;
+            border-radius: 10px;
+            margin-top: 25px;
+            padding: 18px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+        }
+
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+
+        .section-heading h4 {
+            color: #07645e;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+
+        .section-heading i {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+
+
+        .table {
+            margin-bottom: 0;
+        }
+
+
+        .table thead th {
+            background: #e8f5f1;
+            color: #173b3a;
+            white-space: nowrap;
+        }
+
+
+        .table td {
+            vertical-align: middle;
+        }
+
+
+        /* Complaint Status */
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+
+        .pending {
+            background: #ffe4a3;
+            color: #8a5a00;
+        }
+
+
+        .progress-status {
+            background: #d7e8ff;
+            color: #07599c;
+        }
+
+
+        .resolved {
+            background: #c8f1d1;
+            color: #087f35;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 25px;
+            background: #edf4f3;
+            padding: 18px;
+            text-align: center;
+            color: #386b65;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 992px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+            }
+
+            .search-box {
+                width: 220px;
+            }
+        }
+
+
+        @media(max-width: 768px) {
+
+            .top-navbar {
+                height: auto;
+                min-height: 75px;
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+
+            .brand h3 {
+                font-size: 18px;
+            }
+
+            .brand small {
+                font-size: 11px;
+            }
+
+            .search-box {
+                order: 3;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .sidebar {
+                width: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding-top: 150px;
+            }
+
+            .admin-area {
+                gap: 5px;
+            }
+
+            .admin-area span {
+                display: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TOP NAVBAR
+===================================================== -->
+
+<nav class="top-navbar">
+
+    <div class="brand">
+
+        <i class="bi bi-house-fill brand-icon"></i>
+
+        <div>
+
+            <h3>Yamuna Hostel</h3>
+
+            <small>
+                Hostel Management System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="dashboardSearch"
+            placeholder="Search students, contacts, complaints...">
+
+        <i class="bi bi-search"></i>
+
+    </div>
+
+
+    <!-- ADMIN -->
+
+    <div class="admin-area">
+
+        <div class="admin-icon">
+            <i class="bi bi-person-fill"></i>
+        </div>
+
+        <span>
+            {{ request.user.username }}
+        </span>
+
+        <a href="{% url 'logout' %}" class="logout-btn">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <a href="{% url 'dashboard' %}" class="active">
+
+        <i class="bi bi-speedometer2"></i>
+
+        Dashboard
+
+    </a>
+
+
+    {% url 'register' %}
+
+        <i class="bi bi-person-plus"></i>
+
+        Student Registration
+
+    </a>
+
+
+    {% url 'register' %}
+
+        <i class="bi bi-people"></i>
+
+        Student Management
+
+    </a>
+
+
+    <a href="{% url 'Room' %}">
+
+        <i class="bi bi-door-open"></i>
+
+        Rooms
+
+    </a>
+
+
+    <a href="{% url 'fee' %}">
+
+        <i class="bi bi-currency-rupee"></i>
+
+        Fee Management
+
+    </a>
+
+
+    <a href="{% url 'notice' %}">
+
+        <i class="bi bi-megaphone"></i>
+
+        Notice Board
+
+    </a>
+
+
+    {% url 'attendance' %}
+
+        <i class="bi bi-calendar-check"></i>
+
+        Attendance
+
+    </a>
+
+
+    <a href="{% url 'gallery' %}">
+
+        <i class="bi bi-images"></i>
+
+        Gallery
+
+    </a>
+
+
+    <a href="{% url 'faq' %}">
+
+        <i class="bi bi-question-circle"></i>
+
+        FAQ
+
+    </a>
+
+
+    <a href="{% url 'contact' %}">
+
+        <i class="bi bi-envelope"></i>
+
+        Contact
+
+    </a>
+
+
+    <a href="{% url 'complaint' %}">
+
+        <i class="bi bi-exclamation-triangle"></i>
+
+        Complaints
+
+    </a>
+
+
+    <a href="#">
+
+        <i class="bi bi-gear"></i>
+
+        Settings
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <i class="bi bi-house-heart"></i>
+
+        <p>
+            Stay Safe<br>
+            Stay Happy
+        </p>
+
+        <i class="bi bi-heart"></i>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="main-content">
+
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+
+        <h1>
+
+            <i class="bi bi-speedometer2"></i>
+
+            Dashboard
+
+        </h1>
+
+        <p>
+            Welcome to Yamuna Hostel Management System
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         DASHBOARD CARDS
+    ================================================== -->
+
+    <div class="row g-3">
+
+
+        <!-- STUDENTS -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card card-blue">
+
+                <div class="card-icon">
+
+                    <i class="bi bi-people-fill"></i>
+
+                </div>
+
+                <h6>
+                    Total Students
+                </h6>
+
+                <div class="card-number">
+
+                    {{ total_students }}
+
+                </div>
+
+               <{% url 'register' %}
+                   class="view-link">
+
+                    View All →
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ROOMS -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card card-green">
+
+                <div class="card-icon">
+
+                    <i class="bi bi-door-open-fill"></i>
+
+                </div>
+
+                <h6>
+                    Total Rooms
+                </h6>
+
+                <div class="card-number">
+
+                    {{ total_rooms }}
+
+                </div>
+
+                <a href="{% url 'Room' %}"
+                   class="view-link">
+
+                    View All →
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card card-purple">
+
+                <div class="card-icon">
+
+                    <i class="bi bi-envelope-fill"></i>
+
+                </div>
+
+                <h6>
+                    Total Contacts
+                </h6>
+
+                <div class="card-number">
+
+                    {{ total_contacts }}
+
+                </div>
+
+                <a href="{% url 'contact' %}"
+                   class="view-link">
+
+                    View All →
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COMPLAINT -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card card-red">
+
+                <div class="card-icon">
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                </div>
+
+                <h6>
+                    Total Complaints
+                </h6>
+
+                <div class="card-number">
+
+                    {{ total_complaints }}
+
+                </div>
+
+                <a href="{% url 'complaint' %}"
+                   class="view-link">
+
+                    View All →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STUDENT REGISTRATION TABLE
+    ================================================== -->
+
+    <div class="section-box">
+
+        <div class="section-heading">
+
+            <h4>
+
+                <i class="bi bi-person-plus-fill"></i>
+
+                Recent Student Registrations
+
+            </h4>
+
+          <{% url 'register' %}
+               class="view-link">
+
+                View All →
+
+            </a>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered searchable-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Name</th>
+
+                        <th>Roll No.</th>
+
+                        <th>Course</th>
+
+                        <th>Room</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% for student in recent_students %}
+
+                    <tr>
+
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+
+                        <td>
+                            {{ student.student_name }}
+                        </td>
+
+                        <td>
+                            {{ student.roll_no }}
+                        </td>
+
+                        <td>
+                            {{ student.course }}
+                        </td>
+
+                        <td>
+                            {{ student.room }}
+                        </td>
+
+                        <td>
+                            {{ student.created_at|date:"d-m-Y" }}
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td colspan="6"
+                            class="text-center">
+
+                            No student registered yet.
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CONTACT TABLE
+    ================================================== -->
+
+    <div class="section-box">
+
+        <div class="section-heading">
+
+            <h4>
+
+                <i class="bi bi-envelope-fill"></i>
+
+                Recent Contact Messages
+
+            </h4>
+
+            <a href="{% url 'contact' %}"
+               class="view-link">
+
+                View All →
+
+            </a>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered searchable-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Message</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% for contact in recent_contacts %}
+
+                    <tr>
+
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+
+                        <td>
+                            {{ contact.name }}
+                        </td>
+
+                        <td>
+                            {{ contact.email }}
+                        </td>
+
+                        <td>
+                            {{ contact.message }}
+                        </td>
+
+                        <td>
+                            {{ contact.created_at|date:"d-m-Y" }}
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td colspan="5"
+                            class="text-center">
+
+                            No contact messages yet.
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         COMPLAINT TABLE
+    ================================================== -->
+
+    <div class="section-box">
+
+        <div class="section-heading">
+
+            <h4>
+
+                <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+
+                Recent Complaints
+
+            </h4>
+
+            <a href="{% url 'complaint' %}"
+               class="view-link">
+
+                View All →
+
+            </a>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered searchable-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Name</th>
+
+                        <th>Complaint</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% for complaint in recent_complaints %}
+
+                    <tr>
+
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+
+                        <td>
+                            {{ complaint.name }}
+                        </td>
+
+                        <td>
+                            {{ complaint.complaint }}
+                        </td>
+
+                        <td>
+                            {{ complaint.created_at|date:"d-m-Y" }}
+                        </td>
+
+                        <td>
+
+                            {% if complaint.status == "Resolved" %}
+
+                                <span class="status resolved">
+                                    Resolved
+                                </span>
+
+                            {% elif complaint.status == "In Progress" %}
+
+                                <span class="status progress-status">
+                                    In Progress
+                                </span>
+
+                            {% else %}
+
+                                <span class="status pending">
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td colspan="5"
+                            class="text-center">
+
+                            No complaints yet.
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2025 Yamuna Hostel |
+    Hostel Management System
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    /* ==========================================
+       DASHBOARD SEARCH
+    ========================================== */
+
+    document
+        .getElementById("dashboardSearch")
+        .addEventListener("keyup", function () {
+
+            let searchValue =
+                this.value.toLowerCase();
+
+            let tables =
+                document.querySelectorAll(
+                    ".searchable-table"
+                );
+
+            tables.forEach(function(table) {
+
+                let rows =
+                    table.querySelectorAll(
+                        "tbody tr"
+                    );
+
+                rows.forEach(function(row) {
+
+                    let text =
+                        row.innerText.toLowerCase();
+
+                    if (
+                        text.includes(searchValue)
+                    ) {
+
+                        row.style.display = "";
+
+                    } else {
+
+                        row.style.display = "none";
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+
+    /* ==========================================
+       PAGE LOADED MESSAGE
+    ========================================== */
+
+    console.log(
+        "Yamuna Hostel Dashboard Loaded Successfully"
+    );
+
+
+</script>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>
+
+
+
+@login_required
+def dashboard(request):
+
+    # Jo student abhi login hai
+    current_student = Student.objects.filter(
+        username=request.user.username
+    ).first()
+
+    context = {
+        "current_student": current_student,
+    }
+
+    return render(request, "hostel/dashboard.html", context)
+total_students = Student.objects.count()
+    total_contacts = Contact.objects.count()
+    total_complaints = Complaint.objects.count()
+
+    total_rooms = 20
+
+    recent_students = Student.objects.order_by("-id")[:5]
+    recent_contacts = Contact.objects.order_by("-id")[:5]
+    recent_complaints = Complaint.objects.order_by("-id")[:5]
+
+    context = {
+        "total_students": total_students,
+        "total_rooms": total_rooms,
+        "total_contacts": total_contacts,
+        "total_complaints": total_complaints,
+
+        "recent_students": recent_students,
+        "recent_contacts": recent_contacts,
+        "recent_complaints": recent_complaints,
+    }
+
+    return render(request, "hostel/dashboard.html", context)
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | Yamuna Hostel</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f8f7;
+            font-family: Arial, sans-serif;
+            color: #123b3a;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .top-navbar {
+            height: 75px;
+            background: linear-gradient(90deg, #dff6e8, #eefcf5);
+            border-bottom: 1px solid #d4e9df;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: #073f3d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .brand h3 {
+            margin: 0;
+            font-weight: 700;
+            color: #073f3d;
+        }
+
+        .brand small {
+            color: #47706b;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #123b3a;
+            font-weight: 600;
+            padding: 10px 4px;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #0b9b69;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            top: 75px;
+            left: 0;
+            width: 245px;
+            height: calc(100vh - 75px);
+            background: linear-gradient(180deg, #063e3c, #002d2d);
+            padding: 20px 12px;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: white;
+            text-decoration: none;
+            padding: 13px 15px;
+            margin-bottom: 5px;
+            border-radius: 9px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .sidebar a.active {
+            background: linear-gradient(90deg, #34b985, #299e76);
+        }
+
+        .sidebar i {
+            font-size: 20px;
+            width: 24px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+            padding: 30px;
+        }
+
+        /* ================= PROFILE HEADER ================= */
+
+        .profile-header {
+            background: linear-gradient(120deg, #edf8ff, #e8f8f0);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+        }
+
+        .profile-photo {
+            width: 155px;
+            height: 155px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid white;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .student-name {
+            font-size: 30px;
+            font-weight: 700;
+            color: #0b315b;
+        }
+
+        .student-course {
+            font-size: 17px;
+            color: #31516d;
+            margin-bottom: 18px;
+        }
+
+        .student-details p {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .student-details i {
+            width: 25px;
+            color: #087b6c;
+        }
+
+        .quote-box {
+            background: #dff5e9;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-box i {
+            font-size: 28px;
+            color: #259b6d;
+        }
+
+        /* ================= CARDS ================= */
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            margin-top: 22px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .card-title {
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: 700;
+            background: #eef7ff;
+            color: #123b70;
+        }
+
+        .card-title i {
+            margin-right: 8px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            width: 45%;
+            font-weight: 600;
+            color: #456;
+        }
+
+        .info-value {
+            width: 55%;
+            color: #123b3a;
+        }
+
+        /* ================= ROOM ================= */
+
+        .room-image {
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #18a76b;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        /* ================= STATS ================= */
+
+        .stat-box {
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 110px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box i {
+            font-size: 30px;
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .stat-blue {
+            background: #e3f1ff;
+        }
+
+        .stat-green {
+            background: #e1f7eb;
+        }
+
+        .stat-yellow {
+            background: #fff4d9;
+        }
+
+        .stat-red {
+            background: #ffe5e5;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .action-buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-custom {
+            border: none;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .btn-edit {
+            background: #0ca66b;
+        }
+
+        .btn-download {
+            background: #287be0;
+        }
+
+        .btn-print {
+            background: #653bc4;
+        }
+
+        .btn-home {
+            background: #e7f1ff;
+            color: #1664bd;
+        }
+
+        .btn-custom:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar a span {
+                display: none;
+            }
+
+            .sidebar a {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                padding: 15px;
+            }
+
+            .top-navbar {
+                padding: 0 15px;
+            }
+
+            .brand h3 {
+                font-size: 18px;
+            }
+
+            .brand small {
+                font-size: 10px;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .student-name {
+                font-size: 24px;
+            }
+
+            .info-row {
+                display: block;
+            }
+
+            .info-label,
+            .info-value {
+                width: 100%;
+            }
+
+            .room-image {
+                width: 100%;
+                height: 160px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* PRINT */
+
+        @media print {
+
+            .sidebar,
+            .top-navbar,
+            .action-buttons {
+                display: none !important;
+            }
+
+            .main {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: white;
+            }
+
+            .info-card,
+            .profile-header {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= TOP NAVBAR ================= -->
+
+<nav class="top-navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            <i class="bi bi-house-heart-fill"></i>
+        </div>
+
+        <div>
+            <h3>Yamuna Hostel</h3>
+            <small>Hostel Management System</small>
+        </div>
+
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#">
+            <i class="bi bi-house"></i> Home
+        </a>
+
+        <a href="#">
+            <i class="bi bi-grid"></i> Dashboard
+        </a>
+
+        <a href="#" class="active">
+            <i class="bi bi-person-fill"></i> Profile
+        </a>
+
+        <a href="#">
+            <i class="bi bi-bell-fill"></i>
+        </a>
+
+        <span class="fw-bold">
+    {{ student.student_name }}
+    <i class="bi bi-chevron-down"></i>
+</span>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+    <!-- Dashboard -->
+    <a href="dashboard.html">
+        <i class="bi bi-grid-fill"></i>
+        <span>Dashboard</span>
+    </a>
+    <!-- Profile -->
+    <a href="profile.html" class="active">
+        <i class="bi bi-person-fill"></i>
+        <span>Profile</span>
+    </a>
+     
+    <!-- Student Register -->
+    <a href="register.html">
+        <i class="bi bi-person-plus-fill"></i>
+        <span>Student Registration</span>
+    </a>
+
+    <!-- Room -->
+    <a href="Room.html">
+        <i class="bi bi-door-open-fill"></i>
+        <span>Rooms</span>
+    </a>
+
+    <!-- Fee Managemet -->
+    <a href="fee.html">
+        <i class="bi bi-currency-rupee"></i>
+        <span>Fee Management</span>
+    </a>
+     
+    <!--Notice Board -->
+    <a href="notice.html">
+        <i class="bi bi-megaphone-fill"></i>
+        <span>Notice Board</span>
+    </a>
+
+    <!-- Attendance -->
+    <a href="attendence.html">
+        <i class="bi bi-calendar-check-fill"></i>
+        <span>Attendance</span>
+    </a>
+
+    <!-- Gallery -->
+    <a href="gallery.html">
+        <i class="bi bi-images"></i>
+        <span>Gallery</span>
+    </a>
+    
+    <!-- Faq -->
+    <a href="faq.html">
+        <i class="bi bi-question-circle-fill"></i>
+        <span>FAQ</span>
+    </a>
+
+    
+    
+</div>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="main">
+
+    <!-- PROFILE HEADER -->
+
+    <div class="profile-header">
+
+        <div class="row align-items-center">
+
+            <!-- PHOTO -->
+
+            <div class="col-lg-3 text-center">
+
+                <img src="{% static 'webapp2/image/studnet.jpg' %}"
+                     class="profile-photo"
+                     alt="Student Photo">
+
+                <div class="mt-3">
+                    <span class="status">
+                        <i class="bi bi-person-check"></i>
+                        Student
+                    </span>
+                </div>
+
+                <h6 class="mt-3 fw-bold">
+    ID: YH{{ student.id }}
+</h6>
+
+            </div>
+
+
+            <!-- BASIC DETAILS -->
+
+            <div class="col-lg-6">
+
+                <div class="student-name">
+    {{ student.student_name }}
+</div>
+                
+
+                <div class="student-course">
+    {{ student.course }} 
+</div>
+                
+
+                <div class="student-details">
+
+                    <p>
+                        <i class="bi bi-person-fill"></i>
+     <b>Father's Name:</b>
+    {{ student.father_name }}
+</p>
+                    
+
+                    <p>
+                        <i class="bi bi-telephone-fill"></i>
+    <b>Mobile No.:</b>
+    {{ student.mobile }}
+</p>
+                    <p>
+                        <i class="bi bi-envelope-fill"></i>
+    <b>Email:</b>
+    {{ student.email }}
+</p>
+                    
+
+                        <p>
+    <i class="bi bi-calendar-event-fill"></i>
+    <b>Date of Birth:</b>
+    {{ student.dob }}
+</p>
+
+                    <p>
+                       <div class="info-value">
+    {{ student.year }}
+</div>
+                
+
+</div>
+
+
+            <!-- QUOTE -->
+
+            <div class="col-lg-3">
+
+                <div class="quote-box">
+
+                    <i class="bi bi-quote"></i>
+
+                    <p class="fst-italic mt-2">
+                        "Education is the most powerful
+                        weapon which you can use to
+                        change the world."
+                    </p>
+
+                    <small>
+                        — Student Profile
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SECOND SECTION -->
+
+    <div class="row">
+
+        <!-- LEFT -->
+
+        <div class="col-lg-7">
+
+            <!-- ROOM INFORMATION -->
+
+            <div class="info-card">
+
+                <div class="card-title">
+                    <i class="bi bi-door-open-fill text-primary"></i>
+                    Room Information
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-md-5">
+
+                            <img src="image/room3.jpg"
+                                 class="room-image"
+                                 alt="Hostel Room">
+
+                        </div>
+
+                        <div class="col-md-7">
+
+                            <div class="info-row">
+                                <div class="info-label">Room No.</div>
+    {{ student.room }}
+</div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Room Type</div>
+                                <div class="info-value">3 Seater</div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Block</div>
+                                <div class="info-value">A Block</div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Room Status</div>
+                                <div class="info-value">
+                                    <span class="status">
+                                        Occupied
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACADEMIC INFORMATION -->
+
+            <div class="info-row">
+    <div class="info-label">Branch</div>
+    <div class="info-value">
+        Information Technology
+    </div>
+</div>
+
+<div class="info-row">
+    <div class="info-label">Course</div>
+    <div class="info-value">
+        {{ student.course }}
+    </div>
+</div>
+
+<div class="info-row">
+    <div class="info-label">Year</div>
+    <div class="info-value">
+        {{ student.year }}
+    </div>
+</div>
+
+<div class="info-row">
+    <div class="info-label">Session</div>
+    <div class="info-value">
+        2026 - 2027
+    </div>
+</div>
+
+        <!-- RIGHT -->
+
+        <div class="col-lg-5">
+
+            <!-- QUICK STATS -->
+
+            <div class="info-card">
+
+                <div class="card-title">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Quick Stats
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-6">
+
+                            <div class="stat-box stat-blue">
+
+                                <i class="bi bi-people-fill text-primary"></i>
+
+                                <div>
+                                    Total Students
+                                </div>
+
+                                <div class="stat-number">
+                                    70
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div class="stat-box stat-green">
+
+                                <i class="bi bi-door-open-fill text-success"></i>
+
+                                <div>
+                                    Total Rooms
+                                </div>
+
+                                <div class="stat-number">
+                                    20
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div class="stat-box stat-yellow">
+
+                                <i class="bi bi-house-check-fill text-warning"></i>
+
+                                <div>
+                                    Available Rooms
+                                </div>
+
+                                <div class="stat-number">
+                                    20
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div class="stat-box stat-red">
+
+                                <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+
+                                <div>
+                                    Total Complaints
+                                </div>
+
+                                <div class="stat-number">
+                                    3
+                                    </div>
+                                
+                                </div>
+                                    
+                                </div>
+                                    
+                            </div>
+                                    
+                        </div>
+                    </div>
+
+                    <!-- EMERGENCY CONTACT -->
+
+                    <div CLASS="infor-card">
+
+                        <div class="card-title" style="background:#e4f7ef;">
+
+                            <i class="bi bi-telephone-fill text-success"></i>
+                    Emergency Contact
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="info-row">
+                        <div class="info-label">
+                            Parent Contact
+                        </div>
+                        <div class="info-value">
+    {{ student.mobile }}
+</div>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-label">
+                            Alternate No.
+                        </div>
+                        <div class="info-value">
+                            9123456789
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-label">
+                            Relation
+                        </div>
+                        <div class="info-value">
+                            Father
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-label">
+                            Address
+                        </div>
+                        <div class="info-value">
+                            Varanasi, Uttar Pradesh
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= BUTTONS ================= -->
+
+    <div class="action-buttons">
+
+        <button class="btn-custom btn-edit"
+                onclick="editProfile()">
+
+            <i class="bi bi-pencil-square"></i>
+            Edit Profile
+
+        </button>
+
+
+        <button class="btn-custom btn-download"
+                onclick="downloadID()">
+
+            <i class="bi bi-download"></i>
+            Download ID Card
+
+        </button>
+
+
+        <button class="btn-custom btn-print"
+                onclick="printProfile()">
+
+            <i class="bi bi-printer-fill"></i>
+            Print Profile
+
+        </button>
+
+
+        <button class="btn-custom btn-home"
+                onclick="goDashboard()">
+
+            <i class="bi bi-arrow-left"></i>
+            Back to Dashboard
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    function editProfile() {
+
+        alert("Edit Profile page will open here.");
+
+    }
+
+
+    function downloadID() {
+
+        alert("Student ID Card download option will open here.");
+
+    }
+
+
+    function printProfile() {
+
+        window.print();
+
+    }
+
+
+    function goDashboard() {
+
+        window.location.href = "dashboard.html";
+
+    }
+
+</script>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>
+                        
+    width:108%;
+    margin:0;
+    padding:40px 5%;
+    box-sizing: border-box;             
+
+
+
+    def attendance(request):
+    room_no = request.GET.get("room")
+
+    return render(request, "attendance.html", {"room_no": room_no})

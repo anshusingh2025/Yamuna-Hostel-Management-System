@@ -1,0 +1,1389 @@
+{%  load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | Yamuna Hostel</title>
+
+    <!-- Bootstrap 5.3.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f8fc;
+            color: #26364d;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: #12345b;
+            color: white;
+            padding: 20px 12px;
+            overflow-y: auto;
+        }
+
+        .brand {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .brand-icon {
+            font-size: 42px;
+            margin-bottom: 5px;
+        }
+
+        .brand h4 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .brand small {
+            color: #c9d7e8;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: white;
+            padding: 13px 15px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: #2878d7;
+        }
+
+        .menu i {
+            font-size: 18px;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            background: white;
+            min-height: 70px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .welcome-name {
+            font-size: 21px;
+            font-weight: 700;
+            color: #173b68;
+        }
+
+        .student-info {
+            color: #718096;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+
+        .top-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-profile img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e5edf7;
+        }
+
+        .notification {
+            font-size: 22px;
+            color: #173b68;
+            margin-right: 12px;
+            position: relative;
+        }
+
+        .notification span {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            background: #dc3545;
+            color: white;
+            width: 17px;
+            height: 17px;
+            font-size: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* ================= WELCOME BANNER ================= */
+
+        .welcome-banner {
+            background: linear-gradient(120deg, #dcecff, #eef7ff);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-banner h2 {
+            color: #123b78;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner p {
+            margin: 0;
+            color: #537091;
+        }
+
+        .house-icon {
+            font-size: 75px;
+            color: #377bc4;
+        }
+
+
+        /* ================= STAT CARDS ================= */
+
+        .stat-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            min-height: 145px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .icon-blue {
+            background: #e3efff;
+            color: #1670d2;
+        }
+
+        .icon-green {
+            background: #e4f8ec;
+            color: #159447;
+        }
+
+        .icon-purple {
+            background: #eee7ff;
+            color: #7548d8;
+        }
+
+        .icon-orange {
+            background: #fff0dc;
+            color: #ef8b15;
+        }
+
+        .stat-title {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .stat-value {
+            font-size: 23px;
+            font-weight: 700;
+            color: #26364d;
+            margin-top: 5px;
+        }
+
+        .stat-sub {
+            color: #8a96a6;
+            font-size: 12px;
+        }
+
+
+        /* ================= COMMON BOX ================= */
+
+        .dashboard-box {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .box-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .box-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #19385f;
+        }
+
+        .box-title i {
+            margin-right: 7px;
+        }
+
+        .view-link {
+            color: #2878d7;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+
+        /* ================= ROOM ================= */
+
+        .room-img {
+            width: 130px;
+            height: 105px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .room-detail {
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .room-detail span {
+            display: inline-block;
+            width: 90px;
+            color: #718096;
+        }
+
+        .room-btn {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 7px 15px;
+            border: 1px solid #2878d7;
+            border-radius: 7px;
+            color: #2878d7;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .room-btn:hover {
+            background: #2878d7;
+            color: white;
+        }
+
+
+        /* ================= MESS ================= */
+
+        .food-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #edf0f5;
+            font-size: 14px;
+        }
+
+        .food-row:last-child {
+            border-bottom: none;
+        }
+
+        .food-time {
+            color: #718096;
+        }
+
+
+        /* ================= ATTENDANCE ================= */
+
+        .attendance-days {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .day {
+            text-align: center;
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .day i {
+            display: block;
+            font-size: 21px;
+            margin-top: 7px;
+        }
+
+        .present {
+            color: #16a05d;
+        }
+
+        .absent {
+            color: #dc3545;
+        }
+
+        .attendance-bottom {
+            border-top: 1px solid #eee;
+            padding-top: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        /* ================= FEE ================= */
+
+        .fee-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .paid {
+            background: #dff5e7;
+            color: #168847;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        .due {
+            background: #ffe1e1;
+            color: #d63031;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+
+        /* ================= QUICK ACTION ================= */
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e2e8f0;
+            padding: 11px;
+            border-radius: 9px;
+            text-decoration: none;
+            color: #26364d;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .quick-action:hover {
+            background: #f2f7ff;
+            border-color: #2878d7;
+        }
+
+        .quick-action i {
+            color: #2878d7;
+            font-size: 19px;
+        }
+
+
+        /* ================= NOTICE ================= */
+
+        .notice-item {
+            display: flex;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-dot {
+            width: 10px;
+            height: 10px;
+            background: #2878d7;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .notice-text {
+            font-size: 14px;
+        }
+
+        .notice-date {
+            color: #8a96a6;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 992px) {
+
+            .sidebar {
+                width: 75px;
+            }
+
+            .brand h4,
+            .brand small,
+            .menu span {
+                display: none;
+            }
+
+            .main {
+                margin-left: 75px;
+            }
+
+            .brand-icon {
+                font-size: 30px;
+            }
+
+        }
+
+
+        @media(max-width: 576px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 10px;
+            }
+
+            .topbar {
+                padding: 10px;
+            }
+
+            .welcome-name {
+                font-size: 17px;
+            }
+
+            .top-profile span {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+                         SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            <i class="bi bi-house-heart-fill"></i>
+        </div>
+
+        <h4>Yamuna Hostel</h4>
+
+        <small>Student Portal</small>
+
+    </div>
+
+
+    <div class="menu">
+
+        <a href="#" class="active">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="profile.html">
+            <i class="bi bi-person-fill"></i>
+            <span>My Profile</span>
+        </a>
+
+        <a href="Room.html">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Room Details</span>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-cup-hot-fill"></i>
+            <span>Mess / Food</span>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-calendar-check-fill"></i>
+            <span>Attendance</span>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-currency-rupee"></i>
+            <span>Fee Details</span>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <span>Complaints</span>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-megaphone-fill"></i>
+            <span>Notices</span>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+                          MAIN
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- ================= TOPBAR ================= -->
+
+    <div class="topbar">
+
+        <div>
+
+            <div class="welcome-name">
+    Welcome,
+    {% if student %}
+        {{ student.student_name }}
+    {% else %}
+        Student
+    {% endif %}
+</div>
+            </div>
+
+            <div class="student-info">
+                Diploma in Information Technology
+                &nbsp; | &nbsp;
+                2nd Year
+                &nbsp; | &nbsp;
+                Room No. 101
+            </div>
+
+        </div>
+
+
+        <div class="d-flex align-items-center">
+
+            <div class="notification">
+
+                <i class="bi bi-bell-fill"></i>
+
+                <span>3</span>
+
+            </div>
+
+
+            <div class="top-profile">
+    <img
+        src="{% static 'webapp2/image/studnet.jpg' %}"
+        alt="Student">
+
+    <span>
+        {% if student %}
+            {{ student.student_name }}
+        {% else %}
+            Student
+        {% endif %}
+    </span>
+
+    <i class="bi bi-chevron-down"></i>
+
+</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= WELCOME BANNER ================= -->
+
+    <div class="welcome-banner">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <h2>
+                    Welcome to Yamuna Hostel 🏠
+                </h2>
+
+                <p>
+                    Your comfort • Our priority
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-end d-none d-md-block">
+
+                <i class="bi bi-buildings-fill house-icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+                       STAT CARDS
+    ===================================================== -->
+
+    <div class="row">
+
+
+        <!-- ROOM -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon icon-blue">
+                    <i class="bi bi-bed-fill"></i>
+                </div>
+
+                <div class="stat-title">
+                    Room No.
+                </div>
+
+                <div class="stat-value">
+    {{ student.room_no }}
+</div>
+                </div>
+
+                <div class="stat-sub">
+                    Block A
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESS -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon icon-green">
+                    <i class="bi bi-cup-hot-fill"></i>
+                </div>
+
+                <div class="stat-title">
+                    Mess Status
+                </div>
+
+                <div class="stat-value">
+                    Active
+                </div>
+
+                <div class="stat-sub">
+                    Veg / Non-Veg
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon icon-purple">
+                    <i class="bi bi-currency-rupee"></i>
+                </div>
+
+                <div class="stat-title">
+                    Monthly Fee
+                </div>
+
+                <div class="stat-value">
+                    ₹2,500
+                </div>
+
+                <div class="stat-sub">
+                    Due on 5th
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon icon-orange">
+                    <i class="bi bi-calendar-check-fill"></i>
+                </div>
+
+                <div class="stat-title">
+                    Attendance
+                </div>
+
+                <div class="stat-value">
+                    92%
+                </div>
+
+                <div class="stat-sub">
+                    This Month
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+                      ROOM + MESS
+    ===================================================== -->
+
+    <div class="row">
+
+
+        <!-- ROOM -->
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-box">
+
+                <div class="box-heading">
+
+                    <div class="box-title">
+                        <i class="bi bi-bed-fill"></i>
+                        My Room Details
+                    </div>
+
+                    <a href="#" class="view-link">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="d-flex gap-3">
+
+                    <img
+                        src="image/room3.jpg"
+                        class="room-img"
+                        alt="Room">
+
+
+                    <div>
+
+                        <div class="room-detail">
+                            <span>Room No.</span>
+                            <b>101</b>
+                        </div>
+
+                        <div class="room-detail">
+                            <span>Block</span>
+                            <b>A Block</b>
+                        </div>
+
+                        <div class="room-detail">
+                            <span>Room Type</span>
+                            <b>3 Seater</b>
+                        </div>
+
+                        <a href="Room.html" class="room-btn">
+                            View Room Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESS -->
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-box">
+
+                <div class="box-heading">
+
+                    <div class="box-title">
+                        <i class="bi bi-cup-hot-fill"></i>
+                        Mess Menu Today
+                    </div>
+
+                    <a href="#" class="view-link">
+                        View Menu
+                    </a>
+
+                </div>
+
+
+                <div class="food-row">
+
+                    <span class="food-time">
+                        Breakfast
+                    </span>
+
+                    <b>
+                        Poha + Tea
+                    </b>
+
+                </div>
+
+
+                <div class="food-row">
+
+                    <span class="food-time">
+                        Lunch
+                    </span>
+
+                    <b>
+                        Rajma Rice + Salad
+                    </b>
+
+                </div>
+
+
+                <div class="food-row">
+
+                    <span class="food-time">
+                        Evening Snacks
+                    </span>
+
+                    <b>
+                        Biscuits + Tea
+                    </b>
+
+                </div>
+
+
+                <div class="food-row">
+
+                    <span class="food-time">
+                        Dinner
+                    </span>
+
+                    <b>
+                        Roti + Dal + Sabji
+                    </b>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+                    ATTENDANCE + FEE
+    ===================================================== -->
+
+    <div class="row">
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-box">
+
+                <div class="box-heading">
+
+                    <div class="box-title">
+                        <i class="bi bi-calendar-check-fill"></i>
+                        Attendance Overview
+                    </div>
+
+                    <a href="#" class="view-link">
+                        View Details
+                    </a>
+
+                </div>
+
+
+                <div class="attendance-days">
+
+                    <div class="day">
+                        Mon
+                        <i class="bi bi-check-circle-fill present"></i>
+                    </div>
+
+                    <div class="day">
+                        Tue
+                        <i class="bi bi-check-circle-fill present"></i>
+                    </div>
+
+                    <div class="day">
+                        Wed
+                        <i class="bi bi-check-circle-fill present"></i>
+                    </div>
+
+                    <div class="day">
+                        Thu
+                        <i class="bi bi-check-circle-fill present"></i>
+                    </div>
+
+                    <div class="day">
+                        Fri
+                        <i class="bi bi-check-circle-fill present"></i>
+                    </div>
+
+                    <div class="day">
+                        Sat
+                        <i class="bi bi-check-circle-fill present"></i>
+                    </div>
+
+                    <div class="day">
+                        Sun
+                        <i class="bi bi-x-circle-fill absent"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="attendance-bottom">
+
+                    <b>
+                        Monthly Attendance
+                    </b>
+
+                    <b>
+                        92%
+                    </b>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEE -->
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-box">
+
+                <div class="box-heading">
+
+                    <div class="box-title">
+                        <i class="bi bi-currency-rupee"></i>
+                        Fee Details
+                    </div>
+
+                    <a href="#" class="view-link">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="fee-row">
+
+                    <span>
+                        Monthly Hostel Fee
+                    </span>
+
+                    <b>
+                        ₹2,500
+                    </b>
+
+                    <span class="paid">
+                        Paid
+                    </span>
+
+                </div>
+
+
+                <div class="fee-row">
+
+                    <span>
+                        Mess Fee
+                    </span>
+
+                    <b>
+                        ₹1,800
+                    </b>
+
+                    <span class="paid">
+                        Paid
+                    </span>
+
+                </div>
+
+
+                <div class="fee-row">
+
+                    <span>
+                        Other Charges
+                    </span>
+
+                    <b>
+                        ₹500
+                    </b>
+
+                    <span class="due">
+                        Due
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+                    QUICK ACTION + NOTICE
+    ===================================================== -->
+
+    <div class="row">
+
+
+        <!-- QUICK ACTION -->
+
+        <div class="col-lg-5">
+
+            <div class="dashboard-box">
+
+                <div class="box-heading">
+
+                    <div class="box-title">
+                        <i class="bi bi-lightning-fill"></i>
+                        Quick Actions
+                    </div>
+
+                </div>
+
+
+                <a href="#" class="quick-action">
+
+                    <i class="bi bi-calendar-event"></i>
+
+                    Apply for Leave
+
+                </a>
+
+
+                <a href="#" class="quick-action">
+
+                    <i class="bi bi-exclamation-circle-fill"></i>
+
+                    Raise Complaint
+
+                </a>
+
+
+                <a href="#" class="quick-action">
+
+                    <i class="bi bi-cup-hot-fill"></i>
+
+                    Check Mess Menu
+
+                </a>
+
+
+                <a href="#" class="quick-action">
+
+                    <i class="bi bi-currency-rupee"></i>
+
+                    View Fee Details
+
+                </a>
+
+
+                <a href="#" class="quick-action">
+
+                    <i class="bi bi-chat-dots-fill"></i>
+
+                    Contact Warden
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTICES -->
+
+        <div class="col-lg-7">
+
+            <div class="dashboard-box">
+
+                <div class="box-heading">
+
+                    <div class="box-title">
+                        <i class="bi bi-megaphone-fill"></i>
+                        Notices & Updates
+                    </div>
+
+                    <a href="#" class="view-link">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="notice-item">
+
+                    <div class="notice-dot"></div>
+
+                    <div>
+
+                        <div class="notice-text">
+                            Mess Menu Changed for This Week
+                        </div>
+
+                        <div class="notice-date">
+                            23 September 2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notice-item">
+
+                    <div class="notice-dot"></div>
+
+                    <div>
+
+                        <div class="notice-text">
+                            Hostel Fee Due Date Reminder
+                        </div>
+
+                        <div class="notice-date">
+                            20 September 2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notice-item">
+
+                    <div class="notice-dot"></div>
+
+                    <div>
+
+                        <div class="notice-text">
+                            Monthly Attendance Updated
+                        </div>
+
+                        <div class="notice-date">
+                            18 September 2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notice-item">
+
+                    <div class="notice-dot"></div>
+
+                    <div>
+
+                        <div class="notice-text">
+                            Important Hostel Announcement
+                        </div>
+
+                        <div class="notice-date">
+                            15 September 2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+                       RECENT ACTIVITIES
+    ===================================================== -->
+
+    <div class="dashboard-box">
+
+        <div class="box-heading">
+
+            <div class="box-title">
+
+                <i class="bi bi-clock-history"></i>
+
+                Recent Activities
+
+            </div>
+
+            <a href="#" class="view-link">
+                View All
+            </a>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>23 Sep 2026</td>
+
+                        <td>
+                            Mess Menu Viewed
+                        </td>
+
+                        <td>
+                            <span class="paid">
+                                Completed
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>22 Sep 2026</td>
+
+                        <td>
+                            Attendance Marked
+                        </td>
+
+                        <td>
+                            <span class="paid">
+                                Completed
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>20 Sep 2026</td>
+
+                        <td>
+                            Complaint Submitted
+                        </td>
+
+                        <td>
+                            <span class="due">
+                                Pending
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>

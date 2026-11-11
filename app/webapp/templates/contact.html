@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+     crossorigin="anonymous"> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+   
+    
+   <style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(white,rgb(119, 142, 151));
+}
+ /* Navbar */
+
+ nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background:brown;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+        .logo h2 {
+            color: white;
+        }
+        .logo span{
+            color:#008080;
+        }
+
+        .logo p {
+            color: black;
+            font-size: 13px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color:#008080;
+
+        }
+        /* Dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    width:60%;
+    background:#008080;
+    color: white;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*navbar-end*/
+
+
+
+/* ================= HERO ================= */
+
+.contact-hero {
+    background: linear-gradient(135deg, #dff3e7, #b9dfc7);
+    padding: 65px 20px;
+    
+}
+
+.contact-hero h1 {
+    font-size: 45px;
+    font-weight: bold;
+    color: #28613f;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.contact-hero p {
+    font-size: 18px;
+    color: #42614e;
+}
+
+
+/* ================= CONTACT SECTION ================= */
+
+.contact-section {
+    padding: 55px 0;
+}
+
+
+/* ================= CONTACT INFO ================= */
+
+.contact-info {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    height: 100%;
+}
+
+.contact-info h2,
+.contact-form h2 {
+    color: #28613f;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.info-text {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+
+/* ================= INFO BOX ================= */
+
+.info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #f1f8f3;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.icon {
+    font-size: 28px;
+}
+
+.info-box h5 {
+    margin: 0 0 5px;
+    color: #28613f;
+}
+
+.info-box p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* ================= FORM ================= */
+
+.contact-form {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.contact-form p {
+    color: #666;
+}
+
+.contact-form label {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.form-control {
+    border: 1px solid #cdded3;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: #3f7d5a;
+    box-shadow: 0 0 5px rgba(63,125,90,0.2);
+}
+
+
+/* ================= SEND BUTTON ================= */
+
+.send-btn {
+    background: #3f7d5a;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    background: #28613f;
+    transform: translateY(-2px);
+}
+
+
+/* ================= SUPPORT ================= */
+
+.support-box {
+    margin-top: 50px;
+    padding: 35px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.support-box h2 {
+    color: #28613f;
+    font-weight: bold;
+}
+
+.support-box > p {
+    color: #666;
+}
+
+.support-card {
+    background: #f1f8f3;
+    padding: 25px 15px;
+    border-radius: 15px;
+    height: 100%;
+    transition: 0.3s;
+}
+
+.support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.support-card:first-line {
+    font-size: 30px;
+}
+
+.support-card h5 {
+    color: #28613f;
+    margin-top: 10px;
+}
+
+.support-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* ================= EMERGENCY ================= */
+
+.emergency-box {
+    margin-top: 45px;
+    padding: 25px 30px;
+    border-radius: 18px;
+    background: #fff4e8;
+    border-left: 6px solid #e48b3c;
+    display: flex;
+    width:650px;
+    margin-left: 200px;
+    align-items: center;
+    gap: 20px;
+}
+
+.emergency-icon {
+    font-size: 45px;
+}
+
+.emergency-box h3 {
+    color: #a95b19;
+}
+
+.emergency-box p {
+    color: #765b43;
+}
+
+.emergency-box button {
+    border: none;
+    background: #d87925;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #28613f;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .contact-hero h1 {
+        font-size: 35px;
+    }
+
+    .navbar-brand {
+        font-size: 17px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 22px;
+    }
+
+    .nav-link {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
+
+
+        .footer{
+    background:#334155;
+    color:white;
+    padding:60px 10% 20px;
+}
+/*Footer*/
+
+.footer-container{
+    background-color: #334155;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-box{
+    flex:1;
+    min-width:220px;
+    text-align: center;
+}
+
+.footer-box h3{
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#60a5fa;
+}
+
+.footer hr{
+    margin:30px 0 20px;
+    border:0;
+    border-top:1px solid #334155;
+}
+
+.copyright{
+    text-align:center;
+    color:#cbd5e1;
+}
+</style>
+</head>
+  <body>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<div class="container-fluid">
+    <div class="row">
+<div class="col-sm-12 p-0">
+    <nav>
+
+        <div class="logo">
+            <h2><i class="bi bi-building"></i>Yamuna<span>Hostel</span></h2>
+            <p>Hostel Management System</p>
+        </div>
+
+    <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Room">Room</a></li>
+            <li><a href="/fee">Fee </a></li>
+            <li><a href="/gallery">Gallery</li>
+            <li class="dropdown">
+             <a href="/contact">Contact ▼</a>
+             <ul class="dropdown-menu">
+             <li><a href="/faq">FAQ</a></li>
+             <li><a href="/complaint">Complaint</a></li>
+        <li><a href="/attendance">Attendance</a></li> 
+        <li><a href="/notice">Notice Board</a></li>
+        <li><a href="">Notification</a></li>
+        <li><a href="/logout">Logout</a></li>
+            </ul>
+        
+        
+        </ul>
+          
+       </nav>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+
+
+
+
+
+<!-- ================= HERO SECTION ================= -->
+<section class="contact-hero">
+    <div class="container text-center">
+        <h1>Contact Us</h1>
+        <p>
+            We are here to help you with hostel-related queries and support.
+        </p>
+    </div>
+</section>
+
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact-section">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <!-- LEFT SIDE -->
+            <div class="col-lg-5">
+
+                <div class="contact-info">
+
+                    <h2>Get In Touch</h2>
+
+                    <p class="info-text">
+                        Have any questions about hostel admission, rooms,
+                        fees, facilities or complaints? Feel free to contact us.
+                    </p>
+
+                    <!-- Address -->
+                    <div class="info-box">
+                        <div class="icon">📍</div>
+                        <div>
+                            <h5>Hostel Address</h5>
+                            <p>
+                                Government Girls Hostel,<br>
+                                Varanasi, Uttar Pradesh, India
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="info-box">
+                        <div class="icon">📞</div>
+                        <div>
+                            <h5>Phone Number</h5>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="info-box">
+                        <div class="icon">✉️</div>
+                        <div>
+                            <h5>Email Address</h5>
+                            <p>hostelmanagement@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Timing -->
+                    <div class="info-box">
+                        <div class="icon">🕒</div>
+                        <div>
+                            <h5>Office Hours</h5>
+                            <p>Monday - Saturday<br>9:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- RIGHT SIDE FORM -->
+            <div class="col-lg-7">
+
+                <div class="contact-form">
+
+                    <h2>Send Us a Message</h2>
+                    <p>
+                        Fill out the form below and our hostel administration
+                        will get back to you.
+                    </p>
+
+                    <form method="POST" action="">
+                         {% csrf_token %}
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label>Full Name</label>
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       placeholder="Enter your name"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Email</label>
+                                
+                                <input type="email"
+                                 name="email"
+                                       class="form-control"
+                                       placeholder="Enter your email"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Phone Number</label>
+                                  
+                                  <input type="tel"
+                                   name="number"
+                                   class="form-control"
+                                   placeholder="Enter your phone number">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Subject</label>
+                            <select name="subject"
+                             class="form-control">
+                                <option>Select your query</option>
+                                <option>Room Related</option>
+                                <option>Admission</option>
+                                <option>Fee Related</option>
+                                <option>Complaint</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Message</label>
+                            <textarea name="message"
+                                     class="form-control"
+                                      rows="5"
+                                      placeholder="Write your message here..."
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit" class="send-btn">
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= QUICK SUPPORT ================= -->
+        <div class="support-box text-center">
+
+            <h2>Need Quick Help?</h2>
+
+            <p>
+                Our hostel administration team is always ready to assist
+                students with their queries.
+            </p>
+
+            <div class="row mt-4">
+
+                <div class="col-md-4">
+                    <div class="support-card">
+                        🏠
+                        <h5>Room Assistance</h5>
+                        <p>Get help regarding room availability and allocation.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="support-card">
+                        💰
+                        <h5>Fee Support</h5>
+                        <p>Ask questions related to hostel fees and payments.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="support-card">
+                        🛠️
+                        <h5>Complaints</h5>
+                        <p>Report hostel maintenance and facility issues.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= EMERGENCY ================= -->
+
+        <div class="emergency-box">
+
+            <div class="emergency-icon">🚨</div>
+
+            <div>
+
+                <h3>Emergency Assistance</h3>
+
+                <p>
+                    For urgent hostel matters, contact the
+                    hostel administration or warden immediately.
+                </p>
+
+                <button>
+                    📞 Contact Warden
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+        <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>Yamuna Hostel</h3>
+            <p>Yamuna Hostel provides a safe,
+                comfortable and well-managed accommodation for students.Our Hostel management system helps students helps students 
+                and administrators manage rooms, 
+                fees allocations and other hostel services easily.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="index.html">HOME</a>
+            <a href="#courses">ABOUT</a>
+            <a href="#reviews">ROOM ALLOCATION</a>
+            <a href="">FEE</a>
+            <a href="">GALLERY</a>
+            <a href="">CONTACT US</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📧 yamunahostel@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Yamuna Hostel Varanasi</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <p class="copyright">
+         © 2026 Yamuna Hostel. All Rights Reserved.
+    </p>
+
+</footer>
+
+      
+
+  
+  
+  
+
+
+
+
+
+
+</body>
+</head>
+</html>

@@ -1,0 +1,329 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+     crossorigin="anonymous"> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+   
+    
+  <style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(white,rgb(119, 142, 151));
+}
+ /* Navbar */
+
+ nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background:brown;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+        .logo h2 {
+            color: white;
+        }
+        .logo span{
+            color:#008080;
+        }
+
+        .logo p {
+            color: black;
+            font-size: 13px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color:#008080;
+
+        }
+        /* Dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    width:60%;
+    background:#008080;
+    color: white;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*navbar-end*/
+
+.footer{
+    background:#334155;
+    color:white;
+    padding:60px 10% 20px;
+}
+/*Footer*/
+
+.footer-container{
+    background-color: #334155;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-box{
+    flex:1;
+    min-width:220px;
+    text-align: center;
+}
+
+.footer-box h3{
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#60a5fa;
+}
+
+.footer hr{
+    margin:30px 0 20px;
+    border:0;
+    border-top:1px solid #334155;
+}
+
+.copyright{
+    text-align:center;
+    color:#cbd5e1;
+}
+.top{
+    text-align: center;
+    margin-top: 100px;
+}
+</style>
+</head>
+<nav>
+
+        <div class="logo">
+            <h2><i class="bi bi-building"></i>Yamuna<span>Hostel</span></h2>
+            <p>Hostel Management System</p>
+        </div>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Room">Room</a></li>
+            <li><a href="/fee">Fee </a></li>
+            <li><a href="/gallery">Gallery</li>
+            <li class="dropdown">
+             <a href="/contact">Contact ▼</a>
+             <ul class="dropdown-menu">
+             <li><a href="/faq">FAQ</a></li>
+             <li><a href="/complaint">Complaint</a></li>
+        <li><a href="/attendance">Attendance</a></li> 
+        <li><a href="/notice">Notice Board</a></li>
+        <li><a href="">Notification</a></li>
+        <li><a href="">Logout</a></li>
+            </ul>
+        
+        
+        </ul>
+          
+       </nav>
+
+       <div class="Explore">
+
+       <div class="top">
+
+  <h1><b>Explore Gallery </b></h1>
+
+ <p><b>
+        Find a comfortable and suitable room for your stay.Our hostel provides clean,<br>
+        safe and well- maintainedrooms with essential facilities for students.<br></b>
+ </p>
+ </div>
+ <div>
+    <div container-fluid>
+        <div class="row g-4">
+        
+
+        <div class="col-md-4"><div class="card" style="width: 18rem;">
+  <img src="{% static 'webapp2/image/room.avif' %}" class="card-img-top" alt="Room">
+  <div class="card-body">
+    <h5 class="card-title">Room</h5>
+    <p class="card-text">Comfortable and well-maintained rooms are available for students.Each room provides a clean and peaceful environment for study and living.</p>
+    <a href="room.html" class="btn btn-secondary"> VIEW ROOM </a>
+  </div>
+</div></div>
+    
+<div class="col-md-4"><div class="card" style="width: 18rem;">
+  <img src="{% static 'webapp2/image/room1.jpg' %}" class="card-img-top" alt="Room" style="height:210px;">
+  <div class="card-body">
+    <h5 class="card-title">Room</h5>
+    <p class="card-text">Comfortable and well-maintained rooms are available for students.Each room provides a clean and peaceful environment for study and living.</p>
+    <a href="room.html" class="btn btn-secondary"> VIEW ROOM </a>
+  </div>
+</div></div>
+     <div class="col-md-4"><div class="card" style="width: 18rem;">
+  <img src="{% static 'webapp2/image/room2.jfif' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Campus Hostel</h5>
+    <p class="card-text">Our campus hostel provides a safe,comfortable and stuent-friendly environment with essential facilities for a better living and learning experience.</p>
+    <a href="#" class="btn btn-secondary">Go somewhere</a>
+  </div>
+</div></div>
+       <div class="col-md-4"><div class="card" style="width: 18rem;">
+  <img src="{% static 'webapp2/image/mess.jpg' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Mess</h5>
+    <p class="card-text">The hostel mess provides fresh,hygienic and mutritious meals for students in a clean and comfortable dining area.</p>
+    <a href="#" class="btn btn-secondary">Go somewhere</a>
+  </div>
+</div></div>
+     <div class="col-md-4"><div class="card" style="width: 18rem;">
+  <img src="{% static 'webapp2/image/corried'%}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Corridor</h5>
+    <p class="card-text">Clean and well-maintained corridors provide easy and safe access to all rooms and hostel facilities.</p>
+    <a href="#" class="btn btn-secondary">Go somewhere</a>
+  </div>
+</div></div>
+     <div class="col-md-4"><div class="card" style="width: 18rem;">
+  <img src="{% static 'webapp2/image/bathroom.jpg' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Bathroom</h5>
+    <p class="card-text">Clean and hygienic bathrooms are provided with proper water supply and regular maintenance for students.</p>
+    <a href="#" class="btn btn-secondary">Go somewhere</a>
+  </div>
+</div></div>
+        </div>        
+</div>
+</div>
+</div>
+
+
+<!-- BACK BUTTON -->
+        <div class="text-center mt-4">
+
+            <a href="{% url 'dashboard' %}"
+               class="btn back-btn px-4">
+
+                <i class="bi bi-arrow-left"></i>
+                Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+       <footer class="footer">
+
+        <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>Yamuna Hostel</h3>
+            <p>Yamuna Hostel provides a safe,
+                comfortable and well-managed accommodation for students.Our Hostel management system helps students helps students 
+                and administrators manage rooms, 
+                fees allocations and other hostel services easily.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="index.html">HOME</a>
+            <a href="#courses">ABOUT</a>
+            <a href="#reviews">ROOM ALLOCATION</a>
+            <a href="">FEE</a>
+            <a href="">GALLERY</a>
+            <a href="">CONTACT US</a>
+
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📧 yamunahostel@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Yamuna Hostel Varanasi</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <p class="copyright">
+         © 2026 Yamuna Hostel. All Rights Reserved.
+    </p>
+
+</footer>
+
+</html>
